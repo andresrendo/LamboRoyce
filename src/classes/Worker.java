@@ -35,7 +35,7 @@ public class Worker extends Thread{
     @Override
     public void run() {
         try {
-            sleep(1000);
+            sleep(2000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Worker.class.getName()).log(Level.SEVERE, null, ex);
         }
