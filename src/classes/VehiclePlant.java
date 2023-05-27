@@ -34,9 +34,12 @@ public class VehiclePlant {
     
     public void initializeWorkers(){
         for (int i = 0; i<this.maxWorkerQty; i++) {
-            Worker worker = new Worker(0.34f, 20, this.dayDurationInMs, "chasis", this);
-            worker.start(); //hardcodeado
-            workers[i] = worker;
+            Worker chasis = new Worker(0.34f, 20, this.dayDurationInMs, "chasis", this);
+            chasis.start(); //hardcodeado
+            workers[i] = chasis;
+//            Worker wheels = new Worker(0.34f, 20, this.dayDurationInMs, "wheels", this);
+//            wheels.start(); //hardcodeado
+//            workers[i] = wheels;
         }
     }
 }
