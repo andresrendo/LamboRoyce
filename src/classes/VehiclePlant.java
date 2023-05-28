@@ -15,7 +15,7 @@ public class VehiclePlant {
     private String name;
     private int maxWorkerQty;
     private boolean jobLength;
-    private Worker[] workers;
+//    private Worker[] workers;
     private long dayDurationInMs;
     public Almacen almacen;
     public Semaphore mutex;
@@ -25,7 +25,7 @@ public class VehiclePlant {
         this.maxWorkerQty = maxWorkers;
         this.jobLength = true;
         this.dayDurationInMs = dayDuration;
-        this.workers = new Worker[maxWorkerQty];
+//        this.workers = new Worker[maxWorkerQty];
         this.almacen = new Almacen(25, 35, 20, 55, 10);
         this.mutex = new Semaphore(1);
         

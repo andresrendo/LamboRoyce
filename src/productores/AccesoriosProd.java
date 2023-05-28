@@ -41,7 +41,7 @@ public class AccesoriosProd {
                         this.mutex.release();
                         this.semAccesoriosCons.release();
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(ChasisProd.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AccesoriosProd.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }  
         }
