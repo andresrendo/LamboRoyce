@@ -5,91 +5,52 @@
  */
 package classes;
 
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import productores.AccesoriosProd;
+import productores.CarroceriaProd;
+import productores.ChasisProd;
+import productores.MotorProd;
+import productores.WheelsProd;
 
 /**
  *
  * @author Juan
  */
 public class Worker extends Thread{
-    private float productionPerDay;
-    private float salary;
-    private float accSalary;
-    private long dayDurationInMs;
-    private String type;
-    private float productionCounter;
-    private VehiclePlant plant;
     
-    
-    public Worker(float productionPerDay, float salary, long dayDuration, String type, VehiclePlant plant) {
-        this.productionPerDay = productionPerDay;
-        this.salary = salary;
-        this.accSalary = 0;
-        this.dayDurationInMs = dayDuration;
-        this.type = type;
-        this.productionCounter = 0;
-        this.plant = plant;
-    }
-
-    @Override
-    public void run() {
-        try {
-            sleep(2000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Worker.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public ChasisProd hireChasisEmployee(Semaphore semChasisProd, Semaphore semChasisCons, Semaphore mutex, String name) {
         
+        ChasisProd cp = new ChasisProd(semChasisProd,  semChasisCons, mutex, name);
         
-        
-        while(true) {
-             try {
-                 
-             payCheck();
-             produceForTheDay();
-//             System.out.println(this.accSalary);
-                 
-                 
-            sleep(this.dayDurationInMs);
-            
-            
-            
-            
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Worker.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-        
-       
+        return cp;
     }
     
-    public void payCheck() {
-        this.accSalary += this.salary;
+    public CarroceriaProd hireCarroceriaProdEmloyee(Semaphore semCarroceriaProd, Semaphore semCarroceriaCons, Semaphore mutex, String name) {
+        CarroceriaProd cap = new CarroceriaProd(semCarroceriaProd, semCarroceriaCons, mutex, name);
+        return cap;
     }
     
-    public void produceForTheDay(){
-        this.productionCounter += this.productionPerDay;
-      
-        
-        if (this.productionCounter >= 1) {
-            try {
-                plant.mutex.acquire();
-                plant.warehouse.updateStorage(this.type, (int) this.productionCounter );
-                plant.mutex.release();
-                
-                
-                
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Worker.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-           
-            // intentar acceder al almacén
-            
-            this.productionCounter = 0;
-        } 
+    public MotorProd hireMotorProdEmloyee(Semaphore semMotorProd, Semaphore semMotorCons, Semaphore mutex, String name) {
+        MotorProd mp = new MotorProd(semMotorProd, semMotorCons, mutex, name);
+        return mp;
     }
     
-    
+     public WheelsProd hireWheelsProdEmloyee(Semaphore semWheelsProd, Semaphore semWheelsCons, Semaphore mutex, String name) {
+        WheelsProd wp = new WheelsProd(semWheelsProd, semWheelsCons, mutex, name);
+        return wp;
+    }
+     
+     public AccesoriosProd hireAccesoriosProdEmloyee(Semaphore semAccesoriosProd, Semaphore semAccesoriosCons, Semaphore mutex, String name) {
+        AccesoriosProd ap = new AccesoriosProd(semAccesoriosProd, semAccesoriosCons, mutex, name);
+        return ap;
+    }
+     
+//     public Assembler hireAssembler(Semaphore semConsButton, Semaphore semProdButton, Semaphore semProdArms, Semaphore semConsArms, Semaphore semProdLegs, Semaphore semConsLegs, Semaphore semConsBody, Semaphore semProdBody, String name, Semaphore mutex, Semaphore mutexButtons, Semaphore mutexArms, Semaphore mutexLegs, Semaphore mutexBody){
+//        Assembler ae = new Assembler(semConsButton, semProdButton, semProdArms, semConsArms,semProdLegs, semConsLegs, semProdBody,semConsBody,name, mutex, mutexButtons, mutexArms, mutexLegs, mutexBody);
+//        return e;
+//     }
     
 }
+
