@@ -14,32 +14,30 @@ import java.util.concurrent.Semaphore;
 public class VehiclePlant {
     private String name;
     private int maxWorkerQty;
+    private boolean jobLength;
     private Worker[] workers;
     private long dayDurationInMs;
-    public Almacen warehouse;
+    public Almacen almacen;
     public Semaphore mutex;
     
-    public VehiclePlant (String name, int maxWorkers, long dayDuration) {
+    public VehiclePlant (String name, int maxWorkers, boolean jobLength, long dayDuration) {
         this.name = name;
         this.maxWorkerQty = maxWorkers;
+        this.jobLength = true;
         this.dayDurationInMs = dayDuration;
         this.workers = new Worker[maxWorkerQty];
-        this.warehouse = new Almacen(20, 35, 20, 55, 10);
+        this.almacen = new Almacen(25, 35, 20, 55, 10);
         this.mutex = new Semaphore(1);
-        
-//        initializeWorkers();
         
         
     }
     
-//    public void initializeWorkers(){
-//        for (int i = 0; i<this.maxWorkerQty; i++) {
-//            Worker chasis = new Worker(0.34f, 20, this.dayDurationInMs, "chasis", this);
-//            chasis.start(); //hardcodeado
-//            workers[i] = chasis;
-////            Worker wheels = new Worker(0.34f, 20, this.dayDurationInMs, "wheels", this);
-////            wheels.start(); //hardcodeado
-////            workers[i] = wheels;
-//        }
-    }
+    Semaphore mutexChasis = new Semaphore(1);
+    Semaphore mutexAccesorios = new Semaphore(1);
+    Semaphore mutexMotor = new Semaphore(1);
+    Semaphore mutexWheels = new Semaphore(1);
+    Semaphore mutexCarroceria = new Semaphore (1);
+}
+//    Semaphore mutexAdmin = new Semaphore(1);
+    
 //}
