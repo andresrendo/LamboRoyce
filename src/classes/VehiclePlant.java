@@ -27,19 +27,19 @@ public class VehiclePlant {
         this.warehouse = new Almacen(20, 35, 20, 55, 10);
         this.mutex = new Semaphore(1);
         
-        initializeWorkers();
+//        initializeWorkers();
         
         
     }
     
-    public void initializeWorkers(){
-        for (int i = 0; i<this.maxWorkerQty; i++) {
-            Worker chasis = new Worker(0.34f, 20, this.dayDurationInMs, "chasis", this);
-            chasis.start(); //hardcodeado
-            workers[i] = chasis;
-//            Worker wheels = new Worker(0.34f, 20, this.dayDurationInMs, "wheels", this);
-//            wheels.start(); //hardcodeado
-//            workers[i] = wheels;
-        }
+//    public void initializeWorkers(){
+//        for (int i = 0; i<this.maxWorkerQty; i++) {
+//            Worker chasis = new Worker(0.34f, 20, this.dayDurationInMs, "chasis", this);
+//            chasis.start(); //hardcodeado
+//            workers[i] = chasis;
+////            Worker wheels = new Worker(0.34f, 20, this.dayDurationInMs, "wheels", this);
+////            wheels.start(); //hardcodeado
+////            workers[i] = wheels;
+//        }
     }
-}
+//}
