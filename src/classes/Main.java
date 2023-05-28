@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
 //       LamboPlant = new VehiclePlant("LG", 19, 2000);
-       RollsPlant = new VehiclePlant("Rolls", 19, 1000);
+       RollsPlant = new VehiclePlant("Rolls", 19, true, 2000);
     }
     
 }
