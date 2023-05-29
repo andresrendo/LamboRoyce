@@ -16,6 +16,7 @@ public class VehiclePlant {
     private String name;
     private int maxWorkerQty;    
     private Worker[] workers;
+    private int[] emplPorDepto;
     private long dayDurationInMs;
     public Almacen almacen;
     public Semaphore mutex;
@@ -25,10 +26,20 @@ public class VehiclePlant {
         this.maxWorkerQty = maxWorkers;
         this.dayDurationInMs = dayDuration;
         this.workers = new Worker[maxWorkerQty];
+        this.emplPorDepto = new int[6];
         this.almacen = new Almacen(25, 35, 20, 55, 10);
         this.mutex = new Semaphore(1);
         
-        
+        crearWorkers();
+    }
+    
+    public void crearWorkers(){
+        for (int i = 0; i<this.maxWorkerQty; i++) {
+            // String tipo, boolean isLambo, long dayDurationInMs, VehiclePlant plant
+            Worker worker = new Worker("chasis", true, 2000, this);
+            worker.start();
+            workers[i] = worker;
+        }
     }
     
 }

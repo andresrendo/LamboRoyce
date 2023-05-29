@@ -45,46 +45,63 @@ public class Almacen {
     public void updateStorage(String workerType, int finishedPart) {
         
         switch (workerType) {
-            case "chasis":
-                
+            
+            case "chasis":       
                 if (this.chasisQty < this.maxChasisQty) {
                     this.chasisQty += finishedPart;
                     
+                    if (this.chasisQty > this.maxChasisQty){
+                        this.chasisQty = this.maxChasisQty;
+                    }                    
                     System.out.println("Chasis producidos: " + this.chasisQty);
-
                 }
-                
-                
                 break;
+                
             case "wheels":
                 if (this.wheelsQty < this.maxWheelsQty) {
                     this.wheelsQty += finishedPart;
                     
+                    if (this.wheelsQty > this.maxWheelsQty){
+                        this.wheelsQty = this.maxWheelsQty;
+                    }
                     System.out.println("Ruedas producidas: " + this.wheelsQty);
                 }
                 break;
+                
         // el resto de contadores
             case "carroceria":
                 if (this.carroceriaQty < this.maxCarroceriaQty) {
                     this.carroceriaQty += finishedPart;
                     
+                    if (this.carroceriaQty > this.maxCarroceriaQty){
+                        this.carroceriaQty = this.maxCarroceriaQty;
+                    }
                     System.out.println("Carrocerias producidas: " + this.carroceriaQty);
                 }
                 break;
+                
             case "motor":
                 if (this.motorQty < this.maxMotorQty) {
                     this.motorQty += finishedPart;
                     
+                    if (this.motorQty > this.maxMotorQty){
+                        this.motorQty = this.maxMotorQty;
+                    }
                     System.out.println("motoress producidas: " + this.motorQty);
                 }
                 break;
+                
             case "accesorios":
                 if (this.accesoriosQty < this.maxAccesoriosQty) {
                     this.accesoriosQty += finishedPart;
                     
+                    if (this.accesoriosQty > this.maxAccesoriosQty){
+                        this.accesoriosQty = this.maxAccesoriosQty;
+                    }
                     System.out.println("Accesorios producidos: " + this.accesoriosQty);
                 }
                 break;
+                
             default:
                 break;
         }
