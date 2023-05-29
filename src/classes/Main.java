@@ -23,6 +23,15 @@ public class Main {
        Configuracion configuracion = new Configuracion();
        configuracion.leerConfiguracion("src//classes//configuracion.txt");
        configuracion.imprimirConfiguracion();
+       // Modificar valores de configuración
+        configuracion.setParametro("duracion_dia", 3000);
+        configuracion.sumarParametro("empleado_Chasis", 1);
+        configuracion.restarParametro("dias_entrega", 2);
+        // Realizar otras operaciones de configuración
+
+       // Guardar los valores actualizados en el archivo
+       configuracion.actualizarConfiguracion("src//classes//configuracion.txt");
+       configuracion.imprimirConfiguracion();
     }
     
 }
