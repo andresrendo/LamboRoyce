@@ -1,0 +1,8 @@
+duracion_dia=3000
+dias_entrega=7
+empleado_Chasis=1
+empleado_Carroceria=1
+empleado_Motor=1
+empleado_Ruedas=1
+empleado_Accesorios=1
+empleado_Ensamblador=1
