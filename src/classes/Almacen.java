@@ -75,7 +75,7 @@ public class Almacen {
                 if (this.motorQty < this.maxMotorQty) {
                     this.motorQty += finishedPart;
                     
-                    System.out.println("motoress producidas: " + this.motorQty);
+                    System.out.println("Motores producidos: " + this.motorQty);
                 }
                 break;
             case "accesorios":

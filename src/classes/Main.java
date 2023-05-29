@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package classes;
-
 /**
  *
  * @author Juan
@@ -21,6 +20,9 @@ public class Main {
         // TODO code application logic here
 //       LamboPlant = new VehiclePlant("LG", 19, 2000);
        RollsPlant = new VehiclePlant("Rolls", 19, true, 2000);
+       Configuracion configuracion = new Configuracion();
+       configuracion.leerConfiguracion("src//classes//configuracion.txt");
+       configuracion.imprimirConfiguracion();
     }
     
 }
