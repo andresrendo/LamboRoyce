@@ -1,8 +1,8 @@
-dias_entrega=4
+dias_entrega=2
 empleado_Carroceria=1
 duracion_dia=3000
 empleado_Ruedas=1
 empleado_Ensamblador=1
-empleado_Chasis=2
+empleado_Chasis=3
 empleado_Accesorios=1
 empleado_Motor=1
