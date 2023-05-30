@@ -1,8 +1,0 @@
-dias_entrega=0
-empleado_Carroceria=1
-duracion_dia=3000
-empleado_Ruedas=1
-empleado_Ensamblador=1
-empleado_Chasis=4
-empleado_Accesorios=1
-empleado_Motor=1

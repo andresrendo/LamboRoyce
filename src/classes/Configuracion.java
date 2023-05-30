@@ -30,12 +30,34 @@ public class Configuracion {
                         String clave = partes[0].trim();
                         int valor = Integer.parseInt(partes[1].trim());
                         parametros.put(clave, valor);
+                        // con el valor(cantidad empleados) los guardo en el array de acnt empleados por depto
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static int[] leerDatosIniciales() {
+        String archivo = "src//classes//deadlineAndDuration.txt";
+        String text = "";
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                text += (linea+"\n");
+            }                                   
+        } catch (IOException e) {
+            text = "";
+            e.printStackTrace();
+        }
+        String[] split = text.split(",");
+        int [] values = new int[2];
+
+        values[0] = Integer.parseInt(split[0].replace("\n", ""));
+        values[1] = Integer.parseInt(split[1].replace("\n", ""));       
+        return values;
     }
 
     public void actualizarConfiguracion(String archivo) {

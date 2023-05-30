@@ -16,12 +16,12 @@ public class VehiclePlant {
     private String name;
     private int maxWorkerQty;    
     private Worker[] workers;
-    private int[] emplPorDepto;
+    public int[] emplPorDepto;
     private long dayDurationInMs;
     public Almacen almacen;
     public Semaphore mutex;
     
-    public VehiclePlant (String name, int maxWorkers, boolean jobLength, long dayDuration) {
+    public VehiclePlant (String name, int maxWorkers, long dayDuration) {
         this.name = name;
         this.maxWorkerQty = maxWorkers;
         this.dayDurationInMs = dayDuration;
