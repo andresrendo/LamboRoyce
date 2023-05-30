@@ -22,6 +22,10 @@ public class Almacen {
     public int maxMotorQty;
     public int maxAccesoriosQty;
     
+    public int totalCarros; // total de carros producidos
+    public int contConAcc; // variable auxiliar para saber cuando se debe crear con accesorio
+    public int totalCarrosAcc; // total de carros producidos con accesorios
+    
     public Almacen(int maxChasis, int maxWheels, int maxCarroceria, int maxMotor, int maxAccesorios){
         this.maxChasisQty = maxChasis;
         this.maxWheelsQty = maxWheels;
@@ -35,7 +39,9 @@ public class Almacen {
         this.carroceriaQty= 0;
         this.motorQty = 0;
         this.accesoriosQty = 0;
-        
+        this.totalCarros = 0;
+        this.contConAcc = 0;
+        this.totalCarrosAcc = 0;
     }
     
     public void test(){
@@ -105,6 +111,94 @@ public class Almacen {
             default:
                 break;
         }
+    }
+    
+    public boolean takeParts(boolean isLambo){
+        if(isLambo){
+            //revisar contador de carros para saber si necesito accesorios
+            if (this.contConAcc == 3){
+                //revisar en almacen si estan disponibles las partes y accesorios y tomarlas
+                if(this.hayStock(isLambo) && this.hayStockAcc(isLambo)){
+                    //restar stock del almacen y contadorAcc a 0
+                    this.restarStock(isLambo, true);
+                    this.contConAcc = 0;
+                    this.totalCarrosAcc += 1;
+                    return true;
+                }
+                return false;
+
+            }else {
+                //revisar en almacen si estan disponibles las partes y tomarlas
+                if(this.hayStock(isLambo)){
+                    this.restarStock(isLambo, false);
+                    this.contConAcc += 1;
+                    this.totalCarros += 1;
+                    return true;
+                }
+                return false;
+            }
+        
+        }else {
+                //revisar contador de carros para saber si necesito accesorios
+            if (this.contConAcc == 6){
+                //revisar en almacen si estan disponibles las partes y accesorios y tomarlas
+                if(this.hayStock(isLambo) && this.hayStockAcc(isLambo)){
+                    //restar stock del almacen y contadorAcc a 0
+                    this.restarStock(isLambo, true);
+                    this.contConAcc = 0;
+                    this.totalCarrosAcc += 1;
+                    return true;
+                }
+                return false;
+
+            }else {
+                //revisar en almacen si estan disponibles las partes y tomarlas
+                if(this.hayStock(isLambo)){
+                    this.restarStock(isLambo, false);
+                    this.contConAcc += 1;
+                    this.totalCarros += 1;
+                    return true;
+                }
+                return false;
+            }
+        }                        
+    }
+    
+    public boolean hayStock(boolean isLambo){
+        
+        if(isLambo){
+            return (this.carroceriaQty >= 1 && this.chasisQty >= 2 && this.motorQty >= 6 && this.wheelsQty >= 5);
+        }
+        return (this.carroceriaQty >= 2 && this.chasisQty >= 3 && this.motorQty >= 4 && this.wheelsQty >= 6);
+    }
+    
+    public boolean hayStockAcc(boolean isLambo){
+        if(isLambo){
+            return this.accesoriosQty >= 1;
+        }
+        return this.accesoriosQty >= 5;
+    }
+    
+    public void restarStock(boolean isLambo, boolean conAcc){
+        //restar partes para cada empresa
+        if(isLambo){
+            this.carroceriaQty -= 1;
+            this.chasisQty -= 2;
+            this.motorQty -= 6;
+            this.wheelsQty -= 5;            
+            if(conAcc){
+                this.accesoriosQty -= 1;
+            }
+            
+        } else {
+            this.carroceriaQty -= 2;
+            this.chasisQty -= 3;
+            this.motorQty -= 4;
+            this.wheelsQty -= 6; 
+            if(conAcc){
+                this.accesoriosQty -= 5;
+            }
+        }          
     }
     
 }

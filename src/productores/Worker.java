@@ -149,8 +149,13 @@ public class Worker extends Thread{
         if (this.isEnsamblador){
             try{
                 plant.mutex.acquire();
-                // plant.almacen.funcion para quitar elementos del almacen
+                boolean partsTaken = plant.almacen.takeParts(this.isLambo);
                 plant.mutex.release();
+                
+                //una vez tomadas las piezas, dormir 2 dias que tarda en hacer el carro (solo si tomo las piezas)
+                if(partsTaken){
+                    sleep(this.dayDurationInMs * 2);
+                }
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Worker.class.getName()).log(Level.SEVERE, null, ex);
