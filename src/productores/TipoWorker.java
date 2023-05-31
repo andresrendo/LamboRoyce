@@ -33,6 +33,25 @@ public class TipoWorker {
         }
         return null;
     }
+    
+    public static int getIndexTipoWorker(String tipo){
+        switch (tipo) {
+            case "chasis":
+                return 0;
+            case "carroceria":
+                return 1;
+            case "motor":
+                return 2;
+            case "accesorios":
+                return 3;
+            case "ruedas":
+                return 4;
+            case "ensamblador":
+                return 5;
+        }
+        return 0;
+    }
+    
     public static String getPiezaCreada(int i){
         switch (i) {
             case 0:
@@ -44,6 +63,8 @@ public class TipoWorker {
             case 3:
                 return TipoWorker.accesorios;
             case 4:
+                return TipoWorker.ruedas;
+            case 5:
                 return TipoWorker.ensamblador;
         }
         return null;

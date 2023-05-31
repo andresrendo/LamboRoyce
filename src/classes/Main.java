@@ -20,19 +20,22 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-//       LamboPlant = new VehiclePlant("LG", 19, 2000);
-       RollsPlant = new VehiclePlant("Rolls", 19, 2000);
-//       Configuracion configuracion = new Configuracion();
-//       Configuracion configLambo = new Configuracion();
-//
-//       configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
-//       configuracion.leerConfiguracion("src//classes//configuracionRolls.txt");
-//       configuracion.imprimirConfiguracion();
+
+
+       int[] valoresIniciales =  Configuracion.leerDatosIniciales(); //valoresIniciales[0]:duracion dia, [1]:dias para entrega
+       System.out.println(valoresIniciales[0] + "," +  valoresIniciales[1]);
+       
+//       LamboPlant = new VehiclePlant("Lamborghini", 11, valoresIniciales[0], valoresIniciales[1], true);
+       RollsPlant = new VehiclePlant("RollsRoyce", 19, valoresIniciales[0], valoresIniciales[1], false);
+       
+       Configuracion configuracion = new Configuracion();
+       Configuracion configLambo = new Configuracion();
+       
+       configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
+       configuracion.leerConfiguracion("src//classes//configuracionRolls.txt");
+       configuracion.imprimirConfiguracion();
        // Modificar valores de configuración
-//        configuracion.setParametro("duracion_dia", 3000);
-//        configuracion.sumarParametro("chasis", 1);
-//        configuracion.restarParametro("dias_entrega", 2);
+        configuracion.sumarParametro("chasis", 1);
         // Realizar otras operaciones de configuración
 
        // Guardar los valores actualizados en el archivo

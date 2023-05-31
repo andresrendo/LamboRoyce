@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import productores.TipoWorker;
 
 public class Configuracion {
 
@@ -19,7 +20,9 @@ public class Configuracion {
         parametros = new HashMap<>();
     }
 
-    public void leerConfiguracion(String archivo) {
+    public int[] leerConfiguracion(String archivo) {
+        int[] cantEmpleados = new int[6];
+        
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -30,13 +33,17 @@ public class Configuracion {
                         String clave = partes[0].trim();
                         int valor = Integer.parseInt(partes[1].trim());
                         parametros.put(clave, valor);
-                        // con el valor(cantidad empleados) los guardo en el array de acnt empleados por depto
+                        // con el valor(cantidad empleados) los guardo en el array de cant empleados por depto
+                        int index = TipoWorker.getIndexTipoWorker(clave); // indice del array al que corresponde el tipo de trabajador
+                        cantEmpleados[index] = valor; //guardo el valor (numero de empleados) en la posicion
+                        
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return cantEmpleados;
     }
     
     public static int[] leerDatosIniciales() {
