@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package classes;
+
+import dashboard.Dashboard;
+
 /**
  *
  * @author Juan
@@ -20,25 +23,26 @@ public class Main {
         // TODO code application logic here
 //       LamboPlant = new VehiclePlant("LG", 19, 2000);
        RollsPlant = new VehiclePlant("Rolls", 19, 2000);
-       Configuracion configuracion = new Configuracion();
-       Configuracion configLambo = new Configuracion();
-
-        public static int[] dia =  Configuracion.leerDatosIniciales();
-       
-       configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
-       configuracion.leerConfiguracion("src//classes//configuracionRolls.txt");
-       configuracion.imprimirConfiguracion();
+//       Configuracion configuracion = new Configuracion();
+//       Configuracion configLambo = new Configuracion();
+//
+//       configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
+//       configuracion.leerConfiguracion("src//classes//configuracionRolls.txt");
+//       configuracion.imprimirConfiguracion();
        // Modificar valores de configuración
-        configuracion.setParametro("duracion_dia", 3000);
-        configuracion.sumarParametro("chasis", 1);
-        configuracion.restarParametro("dias_entrega", 2);
+//        configuracion.setParametro("duracion_dia", 3000);
+//        configuracion.sumarParametro("chasis", 1);
+//        configuracion.restarParametro("dias_entrega", 2);
         // Realizar otras operaciones de configuración
 
        // Guardar los valores actualizados en el archivo
-       configuracion.actualizarConfiguracion("src//classes//configuracionRolls.txt");
-       configuracion.imprimirConfiguracion();
-        System.out.println("lambo\n");
-        configLambo.imprimirConfiguracion();
+//       configuracion.actualizarConfiguracion("src//classes//configuracionRolls.txt");
+//       configuracion.imprimirConfiguracion();
+//        System.out.println("lambo\n");
+//        configLambo.imprimirConfiguracion();
+        Dashboard interfaz = new Dashboard();
+        interfaz.setVisible(true);
+
     }
     
 }

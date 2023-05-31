@@ -1,6 +1,6 @@
 motor=1
-dias_entrega=20
-chasis=1
+dias_entrega=8
+chasis=7
 duracion_dia=3000
 accesorios=1
 carroceria=1
