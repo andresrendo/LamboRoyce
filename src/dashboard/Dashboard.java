@@ -4,17 +4,21 @@
  */
 package dashboard;
 
+import classes.Main;
+import classes.Configuracion;
+
 /**
  *
  * @author mannith
  */
 public class Dashboard extends javax.swing.JFrame {
-
     /**
      * Creates new form Dashboard
      */
+    Configuracion configLambo = new Configuracion();
     public Dashboard() {
         initComponents();
+        configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
     }
 
     /**
@@ -29,15 +33,10 @@ public class Dashboard extends javax.swing.JFrame {
         qtyWChasis = new javax.swing.JSpinner();
         workerChasis = new javax.swing.JLabel();
         workerCarroceria = new javax.swing.JLabel();
-        qtyWMotor = new javax.swing.JSpinner();
         workerMotor = new javax.swing.JLabel();
-        qtyWCarroceria = new javax.swing.JSpinner();
         workerRuedas = new javax.swing.JLabel();
-        qtyWRuedas = new javax.swing.JSpinner();
         workerAcc = new javax.swing.JLabel();
-        qtyWAcc = new javax.swing.JSpinner();
         workerEnsamblador = new javax.swing.JLabel();
-        qtyWEnsamblador = new javax.swing.JSpinner();
         startPlant = new javax.swing.JToggleButton();
         jLabel7 = new javax.swing.JLabel();
         qtyAcc = new javax.swing.JTextField();
@@ -66,38 +65,56 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         gerenteAccion = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        empleadosDispo = new javax.swing.JTextField();
+        ensambladoresWorkers = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         gananciaNeta = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         qtyCarrosProducidos3 = new javax.swing.JTextField();
+        restarWChasis = new javax.swing.JButton();
+        sumarWChasis = new javax.swing.JButton();
+        sumarWCarroceria = new javax.swing.JButton();
+        restarWCarroceria = new javax.swing.JButton();
+        restarWMotor = new javax.swing.JButton();
+        sumarWMotor = new javax.swing.JButton();
+        SumarWRuedas = new javax.swing.JButton();
+        restarWRuedas = new javax.swing.JButton();
+        restarWAcce = new javax.swing.JButton();
+        sumarWAcce = new javax.swing.JButton();
+        restarWEnsamblador = new javax.swing.JButton();
+        sumarWEnsamblador = new javax.swing.JButton();
+        empleadosDispo1 = new javax.swing.JTextField();
+        chasisWorkers = new javax.swing.JTextField();
+        carroceriasWorkers = new javax.swing.JTextField();
+        motorWorkers = new javax.swing.JTextField();
+        ruedasWorkers = new javax.swing.JTextField();
+        accesoriosWorkers = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(qtyWChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
+
+        javax.swing.JSpinner.DefaultEditor spinnerEditor = (javax.swing.JSpinner.DefaultEditor) qtyWChasis.getEditor();
+        spinnerEditor.getTextField().setEditable(false);
+        qtyWChasis.setModel(new javax.swing.SpinnerNumberModel(1, null, 14, 1));
+        qtyWChasis.setFocusable(false);
+        getContentPane().add(qtyWChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
 
         workerChasis.setText("Trabajadores de Chasis:");
         getContentPane().add(workerChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         workerCarroceria.setText("Trabajadores de Carroceria:");
         getContentPane().add(workerCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-        getContentPane().add(qtyWMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
 
         workerMotor.setText("Trabajadores de Motor:");
         getContentPane().add(workerMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        getContentPane().add(qtyWCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
 
         workerRuedas.setText("Trabajadores de Ruedas:");
         getContentPane().add(workerRuedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
-        getContentPane().add(qtyWRuedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
         workerAcc.setText("Trabajadores de Accesorios:");
         getContentPane().add(workerAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
-        getContentPane().add(qtyWAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
         workerEnsamblador.setText("Ensambladores:");
         getContentPane().add(workerEnsamblador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
-        getContentPane().add(qtyWEnsamblador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
 
         startPlant.setFont(new java.awt.Font("Liberation Sans", 0, 30)); // NOI18N
         startPlant.setText("Iniciar Simulacion");
@@ -112,12 +129,15 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel7.setText("Almacen");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, 60));
 
+        qtyAcc.setEditable(false);
         qtyAcc.setText("0");
         getContentPane().add(qtyAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 30, -1));
 
+        qtyChasis.setEditable(false);
         qtyChasis.setText("0");
         getContentPane().add(qtyChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 30, -1));
 
+        qtyCarroceria.setEditable(false);
         qtyCarroceria.setText("0");
         qtyCarroceria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,9 +146,11 @@ public class Dashboard extends javax.swing.JFrame {
         });
         getContentPane().add(qtyCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 30, -1));
 
+        qtyMotores.setEditable(false);
         qtyMotores.setText("0");
         getContentPane().add(qtyMotores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 30, -1));
 
+        qtyCarrosProducidos.setEditable(false);
         qtyCarrosProducidos.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         qtyCarrosProducidos.setText("0");
         getContentPane().add(qtyCarrosProducidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 50, 40));
@@ -152,6 +174,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel13.setText("Carros Vendidos:");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, -1, -1));
 
+        qtyRuedas1.setEditable(false);
         qtyRuedas1.setText("0");
         getContentPane().add(qtyRuedas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 30, -1));
 
@@ -159,6 +182,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel14.setText("Dias para la entrega:");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, -1, -1));
 
+        qtyCarrosProducidos1.setEditable(false);
         qtyCarrosProducidos1.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         qtyCarrosProducidos1.setText("7");
         qtyCarrosProducidos1.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +196,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel15.setText("Carros Producidos:");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, -1, -1));
 
+        qtyCarrosProducidos2.setEditable(false);
         qtyCarrosProducidos2.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         qtyCarrosProducidos2.setText("0");
         getContentPane().add(qtyCarrosProducidos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 50, 40));
@@ -179,6 +204,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel16.setText("Dias Totales:");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, -1, -1));
 
+        diasTotales.setEditable(false);
         diasTotales.setText("0");
         diasTotales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +216,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel17.setText("Sueldo Mensual:");
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, -1, -1));
 
+        sueldoMensual.setEditable(false);
         sueldoMensual.setText("0");
         sueldoMensual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +232,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel19.setText("Director de la planta esta actualmente:");
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
 
+        directorAccion.setEditable(false);
         directorAccion.setText("Accion");
         directorAccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,6 +244,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel20.setText("Gerente de la planta esta actualmente:");
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, 40));
 
+        gerenteAccion.setEditable(false);
         gerenteAccion.setText("Accion");
         gerenteAccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,17 +256,19 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel21.setText("Empleados disponibles");
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
 
-        empleadosDispo.setText("0");
-        empleadosDispo.addActionListener(new java.awt.event.ActionListener() {
+        ensambladoresWorkers.setEditable(false);
+        ensambladoresWorkers.setText("1");
+        ensambladoresWorkers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                empleadosDispoActionPerformed(evt);
+                ensambladoresWorkersActionPerformed(evt);
             }
         });
-        getContentPane().add(empleadosDispo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 30, -1));
+        getContentPane().add(ensambladoresWorkers, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 30, -1));
 
         jLabel22.setText("Ganancia neta:");
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
 
+        gananciaNeta.setEditable(false);
         gananciaNeta.setText("0");
         gananciaNeta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,9 +281,172 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel23.setText("Ganancia Total:");
         getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, -1, -1));
 
+        qtyCarrosProducidos3.setEditable(false);
         qtyCarrosProducidos3.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         qtyCarrosProducidos3.setText("0");
         getContentPane().add(qtyCarrosProducidos3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 110, 40));
+
+        restarWChasis.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        restarWChasis.setText("↓");
+        restarWChasis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restarWChasisActionPerformed(evt);
+            }
+        });
+        getContentPane().add(restarWChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 40, 10));
+
+        sumarWChasis.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        sumarWChasis.setText("↑");
+        sumarWChasis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumarWChasisActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sumarWChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 40, 10));
+
+        sumarWCarroceria.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        sumarWCarroceria.setText("↑");
+        sumarWCarroceria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumarWCarroceriaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sumarWCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 40, 10));
+
+        restarWCarroceria.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        restarWCarroceria.setText("↓");
+        restarWCarroceria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restarWCarroceriaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(restarWCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 40, 10));
+
+        restarWMotor.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        restarWMotor.setText("↓");
+        restarWMotor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restarWMotorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(restarWMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 40, 10));
+
+        sumarWMotor.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        sumarWMotor.setText("↑");
+        sumarWMotor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumarWMotorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sumarWMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 40, 10));
+
+        SumarWRuedas.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        SumarWRuedas.setText("↑");
+        SumarWRuedas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SumarWRuedasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(SumarWRuedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 40, 10));
+
+        restarWRuedas.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        restarWRuedas.setText("↓");
+        restarWRuedas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restarWRuedasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(restarWRuedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 40, 10));
+
+        restarWAcce.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        restarWAcce.setText("↓");
+        restarWAcce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restarWAcceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(restarWAcce, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 40, 10));
+
+        sumarWAcce.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        sumarWAcce.setText("↑");
+        sumarWAcce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumarWAcceActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sumarWAcce, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 40, 10));
+
+        restarWEnsamblador.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        restarWEnsamblador.setText("↓");
+        restarWEnsamblador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restarWEnsambladorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(restarWEnsamblador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 40, 10));
+
+        sumarWEnsamblador.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        sumarWEnsamblador.setText("↑");
+        sumarWEnsamblador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumarWEnsambladorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sumarWEnsamblador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 40, 10));
+
+        empleadosDispo1.setEditable(false);
+        empleadosDispo1.setText("0");
+        empleadosDispo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empleadosDispo1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(empleadosDispo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 30, -1));
+
+        chasisWorkers.setEditable(false);
+        chasisWorkers.setText("1");
+        chasisWorkers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chasisWorkersActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chasisWorkers, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 30, -1));
+
+        carroceriasWorkers.setEditable(false);
+        carroceriasWorkers.setText("1");
+        carroceriasWorkers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carroceriasWorkersActionPerformed(evt);
+            }
+        });
+        getContentPane().add(carroceriasWorkers, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 30, -1));
+
+        motorWorkers.setEditable(false);
+        motorWorkers.setText("1");
+        motorWorkers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motorWorkersActionPerformed(evt);
+            }
+        });
+        getContentPane().add(motorWorkers, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 30, -1));
+
+        ruedasWorkers.setEditable(false);
+        ruedasWorkers.setText("1");
+        ruedasWorkers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ruedasWorkersActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ruedasWorkers, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 30, -1));
+
+        accesoriosWorkers.setEditable(false);
+        accesoriosWorkers.setText("1");
+        accesoriosWorkers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accesoriosWorkersActionPerformed(evt);
+            }
+        });
+        getContentPane().add(accesoriosWorkers, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 30, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -285,13 +479,120 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gerenteAccionActionPerformed
 
-    private void empleadosDispoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadosDispoActionPerformed
+    private void ensambladoresWorkersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ensambladoresWorkersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_empleadosDispoActionPerformed
+    }//GEN-LAST:event_ensambladoresWorkersActionPerformed
 
     private void gananciaNetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gananciaNetaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gananciaNetaActionPerformed
+
+    private void restarWChasisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarWChasisActionPerformed
+        // TODO add your handling code here:
+        configLambo.restarParametro("chasis", 1);
+        chasisWorkers.setText(String.valueOf(configLambo.obtenerParametro("chasis")));
+    }//GEN-LAST:event_restarWChasisActionPerformed
+
+    private void sumarWChasisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarWChasisActionPerformed
+        // TODO add your handling code here:
+        configLambo.sumarParametro("chasis", 1);
+        chasisWorkers.setText(String.valueOf(configLambo.obtenerParametro("chasis")));
+        
+//        System.out.println(configLambo.obtenerParametro("chasis"));
+        
+    }//GEN-LAST:event_sumarWChasisActionPerformed
+
+    private void sumarWCarroceriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarWCarroceriaActionPerformed
+        // TODO add your handling code here:
+        configLambo.sumarParametro("carroceria", 1);
+        carroceriasWorkers.setText(String.valueOf(configLambo.obtenerParametro("carroceria")));
+    }//GEN-LAST:event_sumarWCarroceriaActionPerformed
+
+    private void restarWCarroceriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarWCarroceriaActionPerformed
+        // TODO add your handling code here:
+        configLambo.restarParametro("carroceria", 1);
+        carroceriasWorkers.setText(String.valueOf(configLambo.obtenerParametro("carroceria")));
+    }//GEN-LAST:event_restarWCarroceriaActionPerformed
+
+    private void restarWMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarWMotorActionPerformed
+        // TODO add your handling code here:
+        configLambo.restarParametro("motor", 1);
+        motorWorkers.setText(String.valueOf(configLambo.obtenerParametro("motor")));
+    }//GEN-LAST:event_restarWMotorActionPerformed
+
+    private void sumarWMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarWMotorActionPerformed
+        // TODO add your handling code here:
+        configLambo.sumarParametro("motor", 1);
+        motorWorkers.setText(String.valueOf(configLambo.obtenerParametro("motor")));
+    }//GEN-LAST:event_sumarWMotorActionPerformed
+
+    private void SumarWRuedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SumarWRuedasActionPerformed
+        // TODO add your handling code here:
+        configLambo.sumarParametro("ruedas", 1);
+        ruedasWorkers.setText(String.valueOf(configLambo.obtenerParametro("ruedas")));
+    }//GEN-LAST:event_SumarWRuedasActionPerformed
+
+    private void restarWRuedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarWRuedasActionPerformed
+        // TODO add your handling code here:
+        configLambo.restarParametro("ruedas", 1);
+        ruedasWorkers.setText(String.valueOf(configLambo.obtenerParametro("ruedas")));
+    }//GEN-LAST:event_restarWRuedasActionPerformed
+
+    private void restarWAcceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarWAcceActionPerformed
+        // TODO add your handling code here:
+        configLambo.restarParametro("accesorios", 1);
+        accesoriosWorkers.setText(String.valueOf(configLambo.obtenerParametro("accesorios")));
+    }//GEN-LAST:event_restarWAcceActionPerformed
+
+    private void sumarWAcceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarWAcceActionPerformed
+        // TODO add your handling code here:
+        configLambo.sumarParametro("accesorios", 1);
+        accesoriosWorkers.setText(String.valueOf(configLambo.obtenerParametro("accesorios")));
+    }//GEN-LAST:event_sumarWAcceActionPerformed
+
+    private void restarWEnsambladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarWEnsambladorActionPerformed
+        // TODO add your handling code here:
+        configLambo.restarParametro("ensamblador", 1);
+        ensambladoresWorkers.setText(String.valueOf(configLambo.obtenerParametro("ensamblador")));
+    }//GEN-LAST:event_restarWEnsambladorActionPerformed
+
+    private void sumarWEnsambladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarWEnsambladorActionPerformed
+        // TODO add your handling code here:
+        configLambo.sumarParametro("ensamblador", 1);
+        ensambladoresWorkers.setText(String.valueOf(configLambo.obtenerParametro("ensamblador")));
+    }//GEN-LAST:event_sumarWEnsambladorActionPerformed
+
+    private void empleadosDispo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadosDispo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_empleadosDispo1ActionPerformed
+
+    private void chasisWorkersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chasisWorkersActionPerformed
+        // TODO add your handling code here:
+//        configLambo.imprimirConfiguracion();
+//        String chasis = "chasis";
+//
+//        // Obtener el valor correspondiente utilizando el método obtenerParametro()
+//        int valor = configLambo.obtenerParametro(chasis);
+//
+//        // Establecer el valor en el JTextField
+//        chasisWorkers.setText(String.valueOf(configLambo.obtenerParametro("chasis")));
+    }//GEN-LAST:event_chasisWorkersActionPerformed
+
+    private void carroceriasWorkersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carroceriasWorkersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carroceriasWorkersActionPerformed
+
+    private void motorWorkersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motorWorkersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_motorWorkersActionPerformed
+
+    private void ruedasWorkersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ruedasWorkersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ruedasWorkersActionPerformed
+
+    private void accesoriosWorkersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accesoriosWorkersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accesoriosWorkersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,9 +630,14 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SumarWRuedas;
+    private javax.swing.JTextField accesoriosWorkers;
+    private javax.swing.JTextField carroceriasWorkers;
+    private javax.swing.JTextField chasisWorkers;
     private javax.swing.JTextField diasTotales;
     private javax.swing.JTextField directorAccion;
-    private javax.swing.JTextField empleadosDispo;
+    private javax.swing.JTextField empleadosDispo1;
+    private javax.swing.JTextField ensambladoresWorkers;
     private javax.swing.JTextField gananciaNeta;
     private javax.swing.JTextField gerenteAccion;
     private javax.swing.JLabel jLabel10;
@@ -351,6 +657,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField motorWorkers;
     private javax.swing.JTextField qtyAcc;
     private javax.swing.JTextField qtyCarroceria;
     private javax.swing.JTextField qtyCarrosProducidos;
@@ -360,14 +667,21 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField qtyChasis;
     private javax.swing.JTextField qtyMotores;
     private javax.swing.JTextField qtyRuedas1;
-    private javax.swing.JSpinner qtyWAcc;
-    private javax.swing.JSpinner qtyWCarroceria;
-    private javax.swing.JSpinner qtyWChasis;
-    private javax.swing.JSpinner qtyWEnsamblador;
-    private javax.swing.JSpinner qtyWMotor;
-    private javax.swing.JSpinner qtyWRuedas;
+    public javax.swing.JSpinner qtyWChasis;
+    private javax.swing.JButton restarWAcce;
+    private javax.swing.JButton restarWCarroceria;
+    private javax.swing.JButton restarWChasis;
+    private javax.swing.JButton restarWEnsamblador;
+    private javax.swing.JButton restarWMotor;
+    private javax.swing.JButton restarWRuedas;
+    private javax.swing.JTextField ruedasWorkers;
     private javax.swing.JToggleButton startPlant;
     private javax.swing.JTextField sueldoMensual;
+    private javax.swing.JButton sumarWAcce;
+    private javax.swing.JButton sumarWCarroceria;
+    private javax.swing.JButton sumarWChasis;
+    private javax.swing.JButton sumarWEnsamblador;
+    private javax.swing.JButton sumarWMotor;
     private javax.swing.JLabel workerAcc;
     private javax.swing.JLabel workerCarroceria;
     private javax.swing.JLabel workerChasis;

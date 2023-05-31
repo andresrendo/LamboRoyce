@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package classes;
+
+import dashboard.Dashboard;
+
 /**
  *
  * @author Juan
@@ -17,6 +20,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
 
        int[] valoresIniciales =  Configuracion.leerDatosIniciales(); //valoresIniciales[0]:duracion dia, [1]:dias para entrega
        System.out.println(valoresIniciales[0] + "," +  valoresIniciales[1]);
@@ -35,10 +39,13 @@ public class Main {
         // Realizar otras operaciones de configuración
 
        // Guardar los valores actualizados en el archivo
-       configuracion.actualizarConfiguracion("src//classes//configuracionRolls.txt");
-       configuracion.imprimirConfiguracion();
-        System.out.println("lambo\n");
-        configLambo.imprimirConfiguracion();
+//       configuracion.actualizarConfiguracion("src//classes//configuracionRolls.txt");
+//       configuracion.imprimirConfiguracion();
+//        System.out.println("lambo\n");
+//        configLambo.imprimirConfiguracion();
+        Dashboard interfaz = new Dashboard();
+        interfaz.setVisible(true);
+
     }
     
 }
