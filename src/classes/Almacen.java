@@ -156,6 +156,7 @@ public class Almacen {
                     this.restarStock(isLambo, true);
                     this.contConAcc = 0;
                     this.totalCarrosAcc += 1;
+                    System.out.println("Hizo un carro");
                     dashboard.GlobalUI.getMainUI().getLGdashboard1().setQtyCarrosAccProd(this.totalCarrosAcc);
                     return true;
                 }
@@ -167,6 +168,7 @@ public class Almacen {
                     this.restarStock(isLambo, false);
                     this.contConAcc += 1;
                     this.totalCarros += 1;
+                    System.out.println("Hizo un carro");
                     dashboard.GlobalUI.getMainUI().getLGdashboard1().setQtyCarrosProd(this.totalCarros);
                     return true;
                 }
