@@ -141,7 +141,7 @@ public class Worker extends Thread{
         if (this.cuentaPieza >= 1) {
             try {
                 plant.mutex.acquire();
-                plant.almacen.updateStorage(this.workerPieza, (int) this.cuentaPieza );
+                plant.almacen.updateStorage(this.workerPieza, (int) this.cuentaPieza, this.isLambo);
                 plant.mutex.release();
                 
             } catch (InterruptedException ex) {

@@ -48,7 +48,7 @@ public class Almacen {
         System.out.println("Estoy en warehouse");
     }
     
-    public void updateStorage(String workerType, int finishedPart) {
+    public void updateStorage(String workerType, int finishedPart, boolean isLambo) {
         
         switch (workerType) {
             
@@ -58,7 +58,12 @@ public class Almacen {
                     
                     if (this.chasisQty > this.maxChasisQty){
                         this.chasisQty = this.maxChasisQty;
-                    }                    
+                    }
+                    if(isLambo){
+                        dashboard.GlobalUI.getMainUI().getLGdashboard1().setChasisQtyLabel(this.chasisQty);
+                    }else {                         
+                        // todo rolls
+                    }
                     System.out.println("Chasis producidos: " + this.chasisQty);
                 }
                 break;
@@ -70,8 +75,11 @@ public class Almacen {
                     if (this.wheelsQty > this.maxWheelsQty){
                         this.wheelsQty = this.maxWheelsQty;
                     }
-                    //act interfaz
-                    
+                    if(isLambo){
+                        dashboard.GlobalUI.getMainUI().getLGdashboard1().setRuedasQtyLabel(this.wheelsQty);
+                    }else{
+                        // todo rolls
+                    }
                     System.out.println("Ruedas producidas: " + this.wheelsQty);
                 }
                 break;
@@ -84,6 +92,11 @@ public class Almacen {
                     if (this.carroceriaQty > this.maxCarroceriaQty){
                         this.carroceriaQty = this.maxCarroceriaQty;
                     }
+                    if(isLambo){
+                        dashboard.GlobalUI.getMainUI().getLGdashboard1().setCarrQtyLabel(this.carroceriaQty);
+                    }else{
+                        // todo rolls
+                    }
                     System.out.println("Carrocerias producidas: " + this.carroceriaQty);
                 }
                 break;
@@ -95,6 +108,11 @@ public class Almacen {
                     if (this.motorQty > this.maxMotorQty){
                         this.motorQty = this.maxMotorQty;
                     }
+                    if(isLambo){
+                        dashboard.GlobalUI.getMainUI().getLGdashboard1().setMotorQtyLabel(this.motorQty);
+                    } else{
+                        // todo rolls
+                    }
                     System.out.println("motores producidos: " + this.motorQty);
                 }
                 break;
@@ -105,6 +123,11 @@ public class Almacen {
                     
                     if (this.accesoriosQty > this.maxAccesoriosQty){
                         this.accesoriosQty = this.maxAccesoriosQty;
+                    }
+                    if(isLambo){
+                        dashboard.GlobalUI.getMainUI().getLGdashboard1().setAccQtyLabel(this.accesoriosQty);
+                    } else{
+                        // todo rolls
                     }
                     System.out.println("Accesorios producidos: " + this.accesoriosQty);
                 }
@@ -125,6 +148,7 @@ public class Almacen {
                     this.restarStock(isLambo, true);
                     this.contConAcc = 0;
                     this.totalCarrosAcc += 1;
+                    dashboard.GlobalUI.getMainUI().getLGdashboard1().setQtyCarrosAccProd(this.totalCarrosAcc);
                     return true;
                 }
                 return false;
@@ -135,12 +159,13 @@ public class Almacen {
                     this.restarStock(isLambo, false);
                     this.contConAcc += 1;
                     this.totalCarros += 1;
+                    dashboard.GlobalUI.getMainUI().getLGdashboard1().setQtyCarrosProd(this.totalCarros);
                     return true;
                 }
                 return false;
             }
         
-        }else {
+        }else {// todo rolls cant carros
                 //revisar contador de carros para saber si necesito accesorios
             if (this.contConAcc == 6){
                 //revisar en almacen si estan disponibles las partes y accesorios y tomarlas
@@ -191,6 +216,8 @@ public class Almacen {
             if(conAcc){
                 this.accesoriosQty -= 1;
             }
+            //act valores en interfaz
+            dashboard.GlobalUI.getMainUI().getLGdashboard1().setValoresAlmacen(chasisQty, carroceriaQty, motorQty, wheelsQty, accesoriosQty);
             
         } else {
             this.carroceriaQty -= 2;
@@ -200,6 +227,7 @@ public class Almacen {
             if(conAcc){
                 this.accesoriosQty -= 5;
             }
+            // todo rolls
         }          
     }
     

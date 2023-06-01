@@ -28,19 +28,65 @@ public class LGdashboard extends javax.swing.JPanel {
     
     public void setLamboPlant(VehiclePlant LamboPlant){
         this.LamboPlant = LamboPlant;
-        this.qtyWChasis.setValue(LamboPlant.emplPorDepto[0]);
-        this.qtyWCarroceria.setValue(LamboPlant.emplPorDepto[1]);
-        this.qtyWMotor.setValue(LamboPlant.emplPorDepto[2]);
-        this.qtyWAcc.setValue(LamboPlant.emplPorDepto[3]);
-        this.qtyWRuedas.setValue(LamboPlant.emplPorDepto[4]);
-        this.qtyWEnsamblador.setValue(LamboPlant.emplPorDepto[5]);
-        this.setWorkersLeft();
+        setWorkersSpinners();
+        setWorkersLeft();
     }
     
     public void setWorkersLeft(){
         int cantidadActual = Functions.calcWorkersQty(LamboPlant.emplPorDepto);
         int restan = LamboPlant.maxWorkerQty - cantidadActual;
         this.empleadosDispo.setText(Integer.toString(restan));
+    }
+    
+    public void setWorkersSpinners(){
+        this.qtyWChasis.setValue(LamboPlant.emplPorDepto[0]);
+        this.qtyWCarroceria.setValue(LamboPlant.emplPorDepto[1]);
+        this.qtyWMotor.setValue(LamboPlant.emplPorDepto[2]);
+        this.qtyWAcc.setValue(LamboPlant.emplPorDepto[3]);
+        this.qtyWRuedas.setValue(LamboPlant.emplPorDepto[4]);
+        this.qtyWEnsamblador.setValue(LamboPlant.emplPorDepto[5]);
+    }
+    
+    public void setChasisQtyLabel(int num){
+        String cant = Integer.toString(num);
+        this.qtyChasis.setText(cant);
+    }
+    public void setCarrQtyLabel(int num){
+        String cant = Integer.toString(num);
+        this.qtyCarroceria.setText(cant);
+    }
+    public void setMotorQtyLabel(int num){
+        String cant = Integer.toString(num);
+        this.qtyMotores.setText(cant);
+    }
+    public void setRuedasQtyLabel(int num){
+        String cant = Integer.toString(num);
+        this.qtyRuedas.setText(cant);
+    }
+    public void setAccQtyLabel(int num){
+        String cant = Integer.toString(num);
+        this.qtyAcc.setText(cant);
+    }
+    public void setQtyCarrosProd(int num){
+        String cant = Integer.toString(num);
+        this.qtyCarrosProducidos.setText(cant);
+    }
+    public void setQtyCarrosAccProd(int num){
+        String cant = Integer.toString(num);
+        this.qtyCarrosAccProducidos.setText(cant);
+    }
+    public void setValoresAlmacen(int chasis, int carr, int motor, int ruedas, int acc){
+        String newChasis = Integer.toString(chasis);
+        String newCarr = Integer.toString(carr);
+        String newMotor = Integer.toString(motor);
+        String newRuedas = Integer.toString(ruedas);
+        String newAcc = Integer.toString(acc);
+        
+        this.qtyChasis.setText(newChasis);
+        this.qtyCarroceria.setText(newCarr);
+        this.qtyMotores.setText(newMotor);
+        this.qtyRuedas.setText(newRuedas);
+        this.qtyAcc.setText(newAcc);
     }
 
     /**
@@ -66,7 +112,6 @@ public class LGdashboard extends javax.swing.JPanel {
         qtyWEnsamblador = new javax.swing.JSpinner();
         startPlant = new javax.swing.JToggleButton();
         jLabel7 = new javax.swing.JLabel();
-        qtyCarrosProducidos = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -75,7 +120,6 @@ public class LGdashboard extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        qtyCarrosProducidos2 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         diasTotales = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -104,6 +148,12 @@ public class LGdashboard extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
         empleadosDispo = new javax.swing.JLabel();
+        qtyCarrosProducidos = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        qtyCarrosAccProducidos = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -184,11 +234,7 @@ public class LGdashboard extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Liberation Sans", 0, 30)); // NOI18N
         jLabel7.setText("Almacen");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, 50));
-
-        qtyCarrosProducidos.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
-        qtyCarrosProducidos.setText("0");
-        add(qtyCarrosProducidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 200, 50, 40));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, -1, 50));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Set Accesorios");
@@ -212,19 +258,15 @@ public class LGdashboard extends javax.swing.JPanel {
 
         jLabel13.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabel13.setText("Carros Vendidos:");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabel14.setText("Dias para la entrega:");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, -1, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabel15.setText("Carros Producidos:");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, -1, -1));
-
-        qtyCarrosProducidos2.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
-        qtyCarrosProducidos2.setText("0");
-        add(qtyCarrosProducidos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, 50, 40));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, -1, -1));
 
         jLabel16.setText("Dias Totales:");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
@@ -355,12 +397,34 @@ public class LGdashboard extends javax.swing.JPanel {
         add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, 20, -1));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 110, 80, -1));
+        add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 80, -1));
 
         empleadosDispo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         empleadosDispo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         empleadosDispo.setText("0");
         add(empleadosDispo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 30, -1));
+
+        qtyCarrosProducidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        qtyCarrosProducidos.setText("0");
+        add(qtyCarrosProducidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 170, 40, 20));
+
+        jLabel25.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        jLabel25.setText("Con accesorios:");
+        add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 190, 120, 30));
+
+        jLabel26.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        jLabel26.setText("Normales:");
+        add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, -1, 20));
+
+        qtyCarrosAccProducidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        qtyCarrosAccProducidos.setText("0");
+        add(qtyCarrosAccProducidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, 40, 30));
+
+        jLabel27.setText("Faltas:");
+        add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
+
+        jLabel28.setText("0");
+        add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 20, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void qtyWChasisStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_qtyWChasisStateChanged
@@ -465,6 +529,10 @@ public class LGdashboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -475,8 +543,8 @@ public class LGdashboard extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel qtyAcc;
     private javax.swing.JLabel qtyCarroceria;
-    private javax.swing.JTextField qtyCarrosProducidos;
-    private javax.swing.JTextField qtyCarrosProducidos2;
+    private javax.swing.JLabel qtyCarrosAccProducidos;
+    private javax.swing.JLabel qtyCarrosProducidos;
     private javax.swing.JTextField qtyCarrosProducidos3;
     private javax.swing.JLabel qtyChasis;
     private javax.swing.JLabel qtyMotores;
