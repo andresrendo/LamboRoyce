@@ -89,37 +89,39 @@ public class Gerente extends Thread {
 
     @Override
     public void run() {
-//        int dia = obtenerDiasTranscurridos();
         while (diasRestantes > 0) {
-            for (int dia = 0; dia <= daysDeadline; dia++) {
-                System.out.println("Día " + dia);
+        System.out.println(diasRestantes);
 
-                // Ver carreras durante las primeras 16 horas del día
-                for (int hora = 0; hora < 16; hora++) {
-                    for (int minuto = 0; minuto < 60; minuto += 30) {
-                        System.out.println("gerente viendo carreras a las " + hora + ":" + minuto);
+        for (int i = 0; i < 48; i++) { // 48 intervalos de 30 minutos en un día
+
+            if (i < 32) { // Las primeras 16 horas del día
+                if (i % 2 == 0) { // Comienzo de una hora
+                    if (!estaViendoCarreras()) {
+                        System.out.println("Gerente viendo carreras a las " + (i / 2) + ":00");
                         verCarreras();
-                        try {
-                            Thread.sleep(dayDurationInMs / (16 * 2)); // Espera la mitad del intervalo de 30 minutos
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    }
+                } else { // Media hora
+                    if (estaViendoCarreras()) {
+                        System.out.println("Gerente deja de ver carreras a las " + (i / 2) + ":30");
                         dejarDeVerCarreras();
-                        System.out.println("gerente deja de ver carreras a las " + hora + ":" + minuto);
                     }
                 }
-
-        // Trabajar en la contabilidad durante 8 horas del día
-                for (int hora = 16; hora < 24; hora++) {
-                    System.out.println("Gerente trabajando en la contabilidad a las " + hora);
+            } else { // El resto del día
+                if (estaViendoCarreras()) {
+                    System.out.println("Gerente trabajando en la contabilidad a las " + (i / 2));
                     dejarDeVerCarreras();
                 }
-
-
-                // Actualizar contador de días restantes
-                diasRestantes--;
-    //            iniciarNuevoDia();
             }
+
+            try {
+                Thread.sleep(dayDurationInMs / 48); // Espera el intervalo de 30 minutos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Actualizar contador de días restantes
+        diasRestantes--;
         }
     }
 }
