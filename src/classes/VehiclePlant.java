@@ -82,5 +82,11 @@ public class VehiclePlant {
 //            workers[i] = worker;
 //        }
     }
+    public int maxWorkers(){
+        return maxWorkerQty;
+    }
     
+    public Worker getWorker(int i){
+        return this.workers[i];
+    }
 }

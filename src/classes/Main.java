@@ -20,6 +20,7 @@ public class Main {
     public static VehiclePlant RollsPlant;
     public static Gerente gerente;
     public static DirectorPlanta director;
+    public static Almacen almacen;
 
     /**
      * @param args the command line arguments
@@ -48,12 +49,12 @@ public class Main {
 //       configuracion.imprimirConfiguracion();
 //        System.out.println("lambo\n");
 //        configLambo.imprimirConfiguracion();
-//        Dashboard interfaz = new Dashboard();
-//        interfaz.setVisible(true);
+        Dashboard interfaz = new Dashboard();
+        interfaz.setVisible(true);
         // Crear objetos de los hilos
-//        DirectorPlanta director = new DirectorPlanta(7, 0);
-        director = new DirectorPlanta(7,0);
-        gerente = new Gerente(7,0,10000,7);
+        boolean isLambo = true;
+        director = new DirectorPlanta(1,0, isLambo);
+        gerente = new Gerente(1,0,8000);
 
         // Iniciar los hilos
         director.start();

@@ -54,6 +54,7 @@ public class Worker extends Thread{
                 
              this.produceForTheDay();
              this.payCheck();
+             
 //             System.out.println(this.accSalary);
             sleep(this.dayDurationInMs);
 
@@ -216,5 +217,6 @@ public class Worker extends Thread{
     public void setIsEnsamblador(boolean isEnsamblador) {
         this.isEnsamblador = isEnsamblador;
     }
+    
     
 }
