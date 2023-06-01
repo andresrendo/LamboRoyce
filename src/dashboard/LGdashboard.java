@@ -146,7 +146,7 @@ public class LGdashboard extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        DeadlineSpinner = new javax.swing.JSpinner();
         empleadosDispo = new javax.swing.JLabel();
         qtyCarrosProducidos = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -349,7 +349,7 @@ public class LGdashboard extends javax.swing.JPanel {
         qtyChasis.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         qtyChasis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         qtyChasis.setText("0");
-        add(qtyChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 20, -1));
+        add(qtyChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 30, -1));
 
         qtyCarroceria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         qtyCarroceria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -359,7 +359,7 @@ public class LGdashboard extends javax.swing.JPanel {
         qtyMotores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         qtyMotores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         qtyMotores.setText("0");
-        add(qtyMotores, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 30, -1));
+        add(qtyMotores, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 40, -1));
 
         qtyRuedas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         qtyRuedas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -374,12 +374,12 @@ public class LGdashboard extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("25");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 20, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 30, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("20");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 20, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, 30, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -389,15 +389,15 @@ public class LGdashboard extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("35");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, 20, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 480, 30, -1));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("10");
-        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, 20, -1));
+        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 480, 30, -1));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 80, -1));
+        DeadlineSpinner.setModel(new javax.swing.SpinnerNumberModel(7, 7, null, 1));
+        add(DeadlineSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 80, -1));
 
         empleadosDispo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         empleadosDispo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -414,7 +414,7 @@ public class LGdashboard extends javax.swing.JPanel {
 
         jLabel26.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jLabel26.setText("Normales:");
-        add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, -1, 20));
+        add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, 90, 20));
 
         qtyCarrosAccProducidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         qtyCarrosAccProducidos.setText("0");
@@ -507,6 +507,7 @@ public class LGdashboard extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner DeadlineSpinner;
     private javax.swing.JTextField diasTotales;
     private javax.swing.JTextField directorAccion;
     private javax.swing.JLabel empleadosDispo;
@@ -540,7 +541,6 @@ public class LGdashboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel qtyAcc;
     private javax.swing.JLabel qtyCarroceria;
     private javax.swing.JLabel qtyCarrosAccProducidos;
