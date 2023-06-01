@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 public class Gerente extends Thread {
     private int diasRestantes;
     private int saldo;
-    private final int daysDeadline;
     private long dayDurationInMs;
     private long startTime; // Tiempo de inicio
     private int diasTranscurridos;
@@ -22,11 +21,10 @@ public class Gerente extends Thread {
     private boolean viendoCarreras; // Estado para indicar si el gerente está viendo carreras
 
     
-    public Gerente(int diasRestantes, int saldo, long dayDurationInMs, int daysDeadline) {
+    public Gerente(int diasRestantes, int saldo, long dayDurationInMs) {
         this.diasRestantes = diasRestantes;
         this.saldo = saldo;
         this.dayDurationInMs = dayDurationInMs;
-        this.daysDeadline = daysDeadline;
         this.startTime = System.currentTimeMillis(); // Inicializar el tiempo de inicio
         this.diasTranscurridos = 0;
         this.horasTranscurridas = 0;
@@ -43,12 +41,12 @@ public class Gerente extends Thread {
     
     public void verCarreras() {
         viendoCarreras = true; // El gerente comienza a ver carreras
-        System.out.println("gerente viendo formula");
+//        System.out.println("gerente viendo formula");
     }
     
     public void dejarDeVerCarreras() {
         viendoCarreras = false; // El gerente deja de ver carreras
-        System.out.println("Gerente Trabajando");
+//        System.out.println("Gerente Trabajando");
     }
     
     public boolean estaViendoCarreras() {
@@ -61,7 +59,7 @@ public class Gerente extends Thread {
     }
 
     public int getDaysDeadline() {
-        return daysDeadline;
+        return diasRestantes;
     }
     
     public void iniciarNuevoDia() {
@@ -97,18 +95,18 @@ public class Gerente extends Thread {
             if (i < 32) { // Las primeras 16 horas del día
                 if (i % 2 == 0) { // Comienzo de una hora
                     if (!estaViendoCarreras()) {
-                        System.out.println("Gerente viendo carreras a las " + (i / 2) + ":00");
+//                        System.out.println("Gerente viendo carreras a las " + (i / 2) + ":00");
                         verCarreras();
                     }
                 } else { // Media hora
                     if (estaViendoCarreras()) {
-                        System.out.println("Gerente deja de ver carreras a las " + (i / 2) + ":30");
+//                        System.out.println("Gerente deja de ver carreras a las " + (i / 2) + ":30");
                         dejarDeVerCarreras();
                     }
                 }
             } else { // El resto del día
                 if (estaViendoCarreras()) {
-                    System.out.println("Gerente trabajando en la contabilidad a las " + (i / 2));
+//                    System.out.println("Gerente trabajando en la contabilidad a las " + (i / 2));
                     dejarDeVerCarreras();
                 }
             }

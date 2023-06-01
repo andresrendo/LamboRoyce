@@ -18,37 +18,25 @@ public class VehiclePlant {
     private int maxWorkerQty;    
     private Worker[] workers;
     public int[] emplPorDepto;
-    private long dayDurationInMs;
     public Almacen almacen;
     public Semaphore mutex;
     public boolean isLambo;
-    private final int daysDeadline;
+    public int cantidadWorkers;
     
-    public VehiclePlant (String name, int maxWorkers, long dayDuration, int daysDeadline, boolean isLambo) {
+    public VehiclePlant (String name, int maxWorkerQty, boolean isLambo) {
         this.name = name;
-        this.maxWorkerQty = maxWorkers;
-        this.dayDurationInMs = dayDuration;
-        this.daysDeadline = daysDeadline;
+        this.maxWorkerQty = maxWorkerQty;
         this.workers = new Worker[maxWorkerQty];
         this.emplPorDepto = new int[6];
         this.almacen = new Almacen(25, 35, 20, 55, 10);
         this.mutex = new Semaphore(1);
-        this.isLambo = isLambo;        
-        
-//        String parametrosEmpl;
-//        if(isLambo){
-//            parametrosEmpl = "src//classes//configuracionLambo.txt";
-//        }else{
-//            parametrosEmpl = "src//classes//configuracionRolls.txt";
-//        }
-//        
-//        Configuracion configuracion = new Configuracion();
-//        this.emplPorDepto = configuracion.leerConfiguracion(parametrosEmpl);//leer txt para ver cantidad de empleados por departamento
-//        
+        this.isLambo = isLambo;
+        this.cantidadWorkers = cantidadWorkers ;
+
         crearWorkers();
     }
     
-//    public void setUpW()
+    
     
     public void crearWorkers(){
         String parametrosEmpl;
@@ -68,19 +56,25 @@ public class VehiclePlant {
             while(aux > 0){
                 
                 String tipo = TipoWorker.getPiezaCreada(i);
-                Worker worker = new Worker(tipo, this.isLambo, this.dayDurationInMs, this);
+                Worker worker = new Worker(tipo, this.isLambo, Main.gerente.getDayDurationInMs(), this);
                 worker.start();
+                this.cantidadWorkers +=1;
                 this.workers[cont] = worker;
                 cont++;
                 aux--;
             }
         }                
-//        for (int i = 0; i<this.maxWorkerQty; i++) {
-//            // String tipo, boolean isLambo, long dayDurationInMs, VehiclePlant plant
-//            Worker worker = new Worker("chasis", this.isLambo, this.dayDurationInMs, this);
-//            worker.start();
-//            workers[i] = worker;
-//        }
+
+    }
+    public int maxWorkers(){
+        System.out.println(maxWorkerQty);
+        return maxWorkerQty;
     }
     
+    public Worker getWorker(int i){
+        return workers[i];
+    }
+    public int emplContratados(){
+        return cantidadWorkers;
+    }
 }
