@@ -63,13 +63,15 @@ public class Almacen {
                 }
                 break;
                 
-            case "wheels":
+            case "ruedas":
                 if (this.wheelsQty < this.maxWheelsQty) {
                     this.wheelsQty += finishedPart;
                     
                     if (this.wheelsQty > this.maxWheelsQty){
                         this.wheelsQty = this.maxWheelsQty;
                     }
+                    //act interfaz
+                    
                     System.out.println("Ruedas producidas: " + this.wheelsQty);
                 }
                 break;

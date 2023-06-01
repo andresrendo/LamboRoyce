@@ -4,7 +4,10 @@
  */
 package dashboard;
 
+import classes.Main;
 import classes.VehiclePlant;
+import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 import productores.TipoWorker;
 
 /**
@@ -39,14 +42,33 @@ public class Functions {
       
     }
     
-    
-    
     public static int calcWorkersQty(int[] cantEmpl) {
         int aux = 0;
         for(int i = 0; i< cantEmpl.length; i++){
             aux += cantEmpl[i];
         }
         return aux;
+    }
+    
+    public static void saveDatosIniciales(int durationDayMs, int deadline){
+        
+        String path = "src//classes//deadlineAndDuration.txt";
+        String datosIniciales = (String.valueOf(durationDayMs)+","+String.valueOf(deadline));
+        
+        try {
+            PrintWriter pw = new PrintWriter(path);
+            pw.print(datosIniciales);
+            pw.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo guardar la información");
+        }
+        
+//        JOptionPane.showMessageDialog(null, "Guardado Éxitoso!");
+//        FunctionsUI.updateDaytoLaunchAndDayTime(daysToLaunch, durationDayinSec);
+        Main.LamboPlant.setDayDurationInMs(durationDayMs);
+//        Main.RollsPlant.setDayDurationInMs(durationDayMs);
+//        Main.rm.getPm().setDaysToPublish(daysToLaunch);
+//        Main.rm.getDirector().setOriginalLaunchDays(daysToLaunch);
     }
     
 }

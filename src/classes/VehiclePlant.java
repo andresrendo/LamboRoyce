@@ -18,8 +18,8 @@ public class VehiclePlant {
     private String name;
     public int maxWorkerQty;    
     private Worker[] workers;
-    public int[] emplPorDepto = new int[6];
-    private long dayDurationInMs;
+    public int[] emplPorDepto;
+    public long dayDurationInMs;
     public Almacen almacen;
     public Semaphore mutex;
     public boolean isLambo;
@@ -49,7 +49,7 @@ public class VehiclePlant {
             parametrosEmpl = "src//classes//configuracionRolls.txt";
         }
         
-        this.emplPorDepto = configuracion.leerConfiguracion(parametrosEmpl);
+        this.emplPorDepto = this.configuracion.leerConfiguracion(parametrosEmpl);
     }
     
     public void crearWorkers(){
@@ -110,6 +110,10 @@ public class VehiclePlant {
         }
         
         //setear salario mensual
+    }
+    
+    public void setDayDurationInMs(int dayDuration){
+        this.dayDurationInMs = dayDuration;
     }
     
 }

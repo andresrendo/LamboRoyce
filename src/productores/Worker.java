@@ -35,7 +35,7 @@ public class Worker extends Thread{
         this.sueldoTotal = 0;
         this.cuentaPieza = 0;
         this.isLambo = isLambo;
-        this.dayDurationInMs = dayDurationInMs;
+        this.dayDurationInMs = plant.dayDurationInMs;
         this.plant = plant;
         this.initializeWorker();
     }
@@ -158,7 +158,7 @@ public class Worker extends Thread{
                 
                 //una vez tomadas las piezas, dormir 2 dias que tarda en hacer el carro (solo si tomo las piezas)
                 if(partsTaken){
-                    sleep(this.dayDurationInMs * 2);
+                    sleep(plant.dayDurationInMs * 2);
                 }
                 
             } catch (InterruptedException ex) {
