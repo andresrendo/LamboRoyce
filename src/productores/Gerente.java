@@ -4,6 +4,9 @@
  */
 package productores;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author mannith
@@ -87,35 +90,36 @@ public class Gerente extends Thread {
     @Override
     public void run() {
 //        int dia = obtenerDiasTranscurridos();
-    while (diasRestantes > 0) {
-        for (int dia = 0; dia <= daysDeadline; dia++) {
-            System.out.println("Día " + dia);
+        while (diasRestantes > 0) {
+            for (int dia = 0; dia <= daysDeadline; dia++) {
+                System.out.println("Día " + dia);
 
-            // Ver carreras durante las primeras 16 horas del día
-            for (int hora = 0; hora <= (dayDurationInMs/(1.5)); hora++) {
-                    System.out.println("entro al ultimo for");
-                    System.out.println(hora);
-                    try {
-                        System.out.println("gerente viendo carreras a las " + hora);
+                // Ver carreras durante las primeras 16 horas del día
+                for (int hora = 0; hora < 16; hora++) {
+                    for (int minuto = 0; minuto < 60; minuto += 30) {
+                        System.out.println("gerente viendo carreras a las " + hora + ":" + minuto);
                         verCarreras();
-                        Thread.sleep(dayDurationInMs / (3)); // Espera la mitad del intervalo de 30 minutos
+                        try {
+                            Thread.sleep(dayDurationInMs / (16 * 2)); // Espera la mitad del intervalo de 30 minutos
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         dejarDeVerCarreras();
-                        System.out.println("gerente deja de ver carreras a las " + hora);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        System.out.println("gerente deja de ver carreras a las " + hora + ":" + minuto);
                     }
                 }
-            }
 
-            // Trabajar en la contabilidad durante 8 horas del día
-            for (int hora = 17; hora <= 24; hora++) { 
+        // Trabajar en la contabilidad durante 8 horas del día
+                for (int hora = 16; hora < 24; hora++) {
                     System.out.println("Gerente trabajando en la contabilidad a las " + hora);
                     dejarDeVerCarreras();
-            }
+                }
 
-            // Actualizar contador de días restantes
-            diasRestantes--;
-//            iniciarNuevoDia();
+
+                // Actualizar contador de días restantes
+                diasRestantes--;
+    //            iniciarNuevoDia();
+            }
         }
     }
 }
