@@ -93,11 +93,18 @@ public class DirectorPlanta extends Thread {
                     if (i == randomHour) {
                         for(int j=0; j<60;j++){
                             if(j==randomMin){
+                                //cambio a "supervisando"
+                                if(isLambo){
+                                    dashboard.GlobalUI.getMainUI().getLGdashboard1().setDirectorAccion("Supervisando al gerente");
+                                }else{
+                                    //todo rolls
+                                }                                
                                 verificarActividadGerente();
                             }
                             Thread.sleep(plant.dayDurationInMs / (24*60));
                         }
                     }
+                    //
                     Thread.sleep(plant.dayDurationInMs / 24); // Espera una hora en tiempo de simulación
                 }
                         } catch(InterruptedException e){
@@ -117,17 +124,29 @@ public class DirectorPlanta extends Thread {
         return 0;
     }
 
-    public void verificarActividadGerente() {
+    public void verificarActividadGerente() throws InterruptedException {
         System.out.println("Director supervisando al gerente");
 
         if (plant.gerente.estaViendoCarreras()) {
             // El gerente está viendo carreras
             System.out.println("Falta al gerente por ver carreras. Se descontarán $50 de su sueldo.");
             faltas++;
+            if(isLambo){
+                dashboard.GlobalUI.getMainUI().getLGdashboard1().setFaltasLabel(faltas);
+            }else{
+                //todo rolls
+            }
 //            Main.gerente.dejarDeVerCarreras(); // El gerente deja de ver carreras
         } else {
             // El gerente está trabajando
             System.out.println("El gerente está trabajando.");
+        }
+        Thread.sleep(plant.dayDurationInMs / 57);//sleep 25 minutos
+        //cambio a trabajando
+        if(isLambo){
+            dashboard.GlobalUI.getMainUI().getLGdashboard1().setDirectorAccion("Trabajando");
+        }else{
+            //todo rolls
         }
     }
  

@@ -14,33 +14,36 @@ import java.util.logging.Logger;
  */
 public class Gerente extends Thread {
     //private int diasRestantes;
-    private int saldo;
+    private double sueldoTotal;
+    private double sueldoPorHora;
     //private long dayDurationInMs;
     private long startTime; // Tiempo de inicio
     private int diasTranscurridos;
     private int horasTranscurridas;
     private boolean viendoCarreras; // Estado para indicar si el gerente está viendo carreras
     private VehiclePlant plant;
+    private int diasTotales;
 
     
-    public Gerente(VehiclePlant plant, int saldo, long dayDurationInMs) {
+    public Gerente(VehiclePlant plant, long dayDurationInMs) {
         //this.diasRestantes = diasRestantes;
-        this.saldo = saldo;
         //this.dayDurationInMs = dayDurationInMs;
         this.startTime = System.currentTimeMillis(); // Inicializar el tiempo de inicio
         this.diasTranscurridos = 0;
         this.horasTranscurridas = 0;
         this.viendoCarreras = false; // Inicialmente el gerente no está viendo carreras
         this.plant = plant;
+        this.sueldoPorHora = 20;
+        this.diasTotales = 0;
     }
     
     public long getDayDurationMs(){
         return plant.dayDurationInMs;
     }
     
-    public int getSaldo() {
-        return saldo;
-    }
+    public double getSueldoHora(){
+        return this.sueldoPorHora;
+    }    
     
     public void verCarreras() {
         viendoCarreras = true; // El gerente comienza a ver carreras
@@ -100,14 +103,32 @@ public class Gerente extends Thread {
                     if (!estaViendoCarreras()) {
 //                        System.out.println("Gerente viendo carreras a las " + (i / 2) + ":00");
                         verCarreras();
+                        // set viendo carreras
+                        if(plant.isLambo){
+                            dashboard.GlobalUI.getMainUI().getLGdashboard1().setGerenteAccion("Viendo carreras");
+                        }else{
+                            //todo rolls
+                        }
                     }
                 } else { // Media hora
                     if (estaViendoCarreras()) {
 //                        System.out.println("Gerente deja de ver carreras a las " + (i / 2) + ":30");
                         dejarDeVerCarreras();
+                        // set revisando contabilidad
+                        if(plant.isLambo){
+                            dashboard.GlobalUI.getMainUI().getLGdashboard1().setGerenteAccion("Revisando contabilidad");
+                        }else{
+                            //todo rolls
+                        }
                     }
                 }
             } else { // El resto del día
+                // set cambiando contador
+                if(plant.isLambo){
+                    dashboard.GlobalUI.getMainUI().getLGdashboard1().setGerenteAccion("Cambiando contador");
+                }else{
+                    //todo rolls
+                }
                 if (estaViendoCarreras()) {
 //                    System.out.println("Gerente trabajando en la contabilidad a las " + (i / 2));
                     dejarDeVerCarreras();
@@ -121,8 +142,25 @@ public class Gerente extends Thread {
             }
         }
 
-        // Actualizar contador de días restantes
-        plant.daysDeadline--;
+            // Actualizar contador de días restantes
+            plant.daysDeadline--;
+            diasTotales++;
+            
+            if(plant.isLambo){
+                dashboard.GlobalUI.getMainUI().getLGdashboard1().setDeadlineLabel(plant.daysDeadline);  // set dias restantes UI
+                dashboard.GlobalUI.getMainUI().getLGdashboard1().setDiasTotales(diasTotales);   // set dias totales UI
+            }else{
+               //todo rolls
+            }
         }
     }
+    
+     public void paySueldo(){
+        this.sueldoTotal += (getSueldoHora()*24);
+    }  
+    
+    public double getSueldoTotal(){
+        return this.sueldoTotal;
+    }
+    
 }

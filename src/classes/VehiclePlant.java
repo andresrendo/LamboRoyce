@@ -42,7 +42,7 @@ public class VehiclePlant {
         this.daysDeadline = deadline;
         this.dayDurationInMs = dayDurationMs;
         this.director = new DirectorPlanta(this,0,isLambo);
-        this.gerente = new Gerente(this,0,dayDurationMs);
+        this.gerente = new Gerente(this,dayDurationMs);
         
         actualizarEmplPorDepto();        
         crearWorkers();
