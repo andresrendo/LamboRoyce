@@ -35,6 +35,22 @@ public class VehiclePlant {
         this.mutex = new Semaphore(1);
         this.isLambo = isLambo;        
         
+//        String parametrosEmpl;
+//        if(isLambo){
+//            parametrosEmpl = "src//classes//configuracionLambo.txt";
+//        }else{
+//            parametrosEmpl = "src//classes//configuracionRolls.txt";
+//        }
+//        
+//        Configuracion configuracion = new Configuracion();
+//        this.emplPorDepto = configuracion.leerConfiguracion(parametrosEmpl);//leer txt para ver cantidad de empleados por departamento
+//        
+        crearWorkers();
+    }
+    
+//    public void setUpW()
+    
+    public void crearWorkers(){
         String parametrosEmpl;
         if(isLambo){
             parametrosEmpl = "src//classes//configuracionLambo.txt";
@@ -45,10 +61,6 @@ public class VehiclePlant {
         Configuracion configuracion = new Configuracion();
         this.emplPorDepto = configuracion.leerConfiguracion(parametrosEmpl);//leer txt para ver cantidad de empleados por departamento
         
-        crearWorkers();
-    }
-    
-    public void crearWorkers(){
         int cont = 0;
         
         for(int i = 0; i<this.emplPorDepto.length; i++){

@@ -6,6 +6,8 @@ package dashboard;
 
 import classes.Main;
 import classes.Configuracion;
+import static classes.Main.RollsPlant;
+import classes.VehiclePlant;
 
 /**
  *
@@ -15,10 +17,12 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
+    int[] valoresIniciales =  Configuracion.leerDatosIniciales();
     Configuracion configLambo = new Configuracion();
     public Dashboard() {
         initComponents();
         configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
+        RollsPlant = new VehiclePlant("RollsRoyce", 19, valoresIniciales[0], valoresIniciales[1], false);
     }
 
     /**
@@ -491,12 +495,17 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         configLambo.restarParametro("chasis", 1);
         chasisWorkers.setText(String.valueOf(configLambo.obtenerParametro("chasis")));
+//        int [] empleados = configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
+//        RollsPlant.crearWorkers(empleados);
     }//GEN-LAST:event_restarWChasisActionPerformed
 
     private void sumarWChasisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarWChasisActionPerformed
         // TODO add your handling code here:
         configLambo.sumarParametro("chasis", 1);
+//        configLambo.imprimirConfiguracion();
+//        configLambo.actualizarConfiguracion("src//classes//configuracionLambo.txt");
         chasisWorkers.setText(String.valueOf(configLambo.obtenerParametro("chasis")));
+//        RollsPlant.crearWorkers();
         
 //        System.out.println(configLambo.obtenerParametro("chasis"));
         
@@ -524,6 +533,8 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         configLambo.sumarParametro("motor", 1);
         motorWorkers.setText(String.valueOf(configLambo.obtenerParametro("motor")));
+//        int [] empleados = configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
+//        RollsPlant.crearWorkers(empleados);
     }//GEN-LAST:event_sumarWMotorActionPerformed
 
     private void SumarWRuedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SumarWRuedasActionPerformed
