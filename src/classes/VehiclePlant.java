@@ -7,6 +7,8 @@ package classes;
 
 import java.util.concurrent.Semaphore;
 import javax.swing.JSpinner;
+import productores.DirectorPlanta;
+import productores.Gerente;
 import productores.TipoWorker;
 import productores.Worker;
 
@@ -23,26 +25,36 @@ public class VehiclePlant {
     public Almacen almacen;
     public Semaphore mutex;
     public boolean isLambo;
-    private final int daysDeadline;
+    public int daysDeadline;
     public Configuracion configuracion = new Configuracion();
+    public int cantidadWorkers;
+    public Gerente gerente;
+    public DirectorPlanta director;
+
     
-    public VehiclePlant (String name, int maxWorkers, long dayDuration, int daysDeadline, boolean isLambo) {
+    public VehiclePlant (String name, int maxWorkerQty, int dayDurationMs, int deadline, boolean isLambo) {
         this.name = name;
-        this.maxWorkerQty = maxWorkers;
-        this.dayDurationInMs = dayDuration;
-        this.daysDeadline = daysDeadline;
+        this.maxWorkerQty = maxWorkerQty;
         this.workers = new Worker[maxWorkerQty];
         this.almacen = new Almacen(25, 35, 20, 55, 10);
         this.mutex = new Semaphore(1);
-        this.isLambo = isLambo;        
+        this.isLambo = isLambo;
+        this.daysDeadline = deadline;
+        this.dayDurationInMs = dayDurationMs;
+        this.director = new DirectorPlanta(this,0,isLambo);
+        this.gerente = new Gerente(this,0,dayDurationMs);
         
         actualizarEmplPorDepto();        
         crearWorkers();
+        startGerenteDir();
+    }                           
+
+    public void startGerenteDir(){
+        this.gerente.start();
+        this.director.start();
     }
     
-    //leer txt para ver cantidad de empleados por departamento
-    public void actualizarEmplPorDepto() {        
-
+    public void actualizarEmplPorDepto(){
         String parametrosEmpl;
         if(isLambo){
             parametrosEmpl = "src//classes//configuracionLambo.txt";
@@ -51,8 +63,6 @@ public class VehiclePlant {
         }
                 
         this.emplPorDepto = this.configuracion.leerConfiguracion(parametrosEmpl);//leer txt para ver cantidad de empleados por departamento
-        
-        crearWorkers();
     }
     
 //    public void setUpW()
@@ -65,12 +75,14 @@ public class VehiclePlant {
             while(aux > 0){
                 
                 String tipo = TipoWorker.getPiezaCreada(i);
-                Worker worker = new Worker(tipo, this.isLambo, this.dayDurationInMs, this);
+                Worker worker = new Worker(tipo, this.isLambo, gerente.getDayDurationInMs(), this);
                 worker.start();
+                this.cantidadWorkers +=1;
                 this.workers[cont] = worker;
                 cont++;
                 aux--;
             }
+
         }        
         
         while (cont < this.maxWorkerQty){
@@ -83,10 +95,6 @@ public class VehiclePlant {
 //            worker.start();
 //            workers[i] = worker;
 //        }
-    }
-    
-    public Worker getWorker(int i){
-        return this.workers[i];
     }
     
     public void reorganizarTrabajadores(){
@@ -119,5 +127,17 @@ public class VehiclePlant {
     public void setDayDurationInMs(int dayDuration){
         this.dayDurationInMs = dayDuration;
     }
+                    
+    public int maxWorkers(){
+        System.out.println(maxWorkerQty);
+        return maxWorkerQty;
+    }
     
+    public Worker getWorker(int i){
+        return workers[i];
+    }
+    public int emplContratados(){
+        return cantidadWorkers;
+    }
+
 }

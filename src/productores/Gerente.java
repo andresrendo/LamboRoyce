@@ -4,6 +4,7 @@
  */
 package productores;
 
+import classes.VehiclePlant;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,29 +13,29 @@ import java.util.logging.Logger;
  * @author mannith
  */
 public class Gerente extends Thread {
-    private int diasRestantes;
+    //private int diasRestantes;
     private int saldo;
-    private final int daysDeadline;
-    private long dayDurationInMs;
+    //private long dayDurationInMs;
     private long startTime; // Tiempo de inicio
     private int diasTranscurridos;
     private int horasTranscurridas;
     private boolean viendoCarreras; // Estado para indicar si el gerente está viendo carreras
+    private VehiclePlant plant;
 
     
-    public Gerente(int diasRestantes, int saldo, long dayDurationInMs, int daysDeadline) {
-        this.diasRestantes = diasRestantes;
+    public Gerente(VehiclePlant plant, int saldo, long dayDurationInMs) {
+        //this.diasRestantes = diasRestantes;
         this.saldo = saldo;
-        this.dayDurationInMs = dayDurationInMs;
-        this.daysDeadline = daysDeadline;
+        //this.dayDurationInMs = dayDurationInMs;
         this.startTime = System.currentTimeMillis(); // Inicializar el tiempo de inicio
         this.diasTranscurridos = 0;
         this.horasTranscurridas = 0;
         this.viendoCarreras = false; // Inicialmente el gerente no está viendo carreras
+        this.plant = plant;
     }
     
     public long getDayDurationMs(){
-        return dayDurationInMs;
+        return plant.dayDurationInMs;
     }
     
     public int getSaldo() {
@@ -43,12 +44,12 @@ public class Gerente extends Thread {
     
     public void verCarreras() {
         viendoCarreras = true; // El gerente comienza a ver carreras
-        System.out.println("gerente viendo formula");
+//        System.out.println("gerente viendo formula");
     }
     
     public void dejarDeVerCarreras() {
         viendoCarreras = false; // El gerente deja de ver carreras
-        System.out.println("Gerente Trabajando");
+//        System.out.println("Gerente Trabajando");
     }
     
     public boolean estaViendoCarreras() {
@@ -57,18 +58,18 @@ public class Gerente extends Thread {
 
     
     public long getDayDurationInMs() {
-        return dayDurationInMs;
+        return plant.dayDurationInMs;
     }
 
     public int getDaysDeadline() {
-        return daysDeadline;
+        return plant.daysDeadline;
     }
     
     public void iniciarNuevoDia() {
         diasTranscurridos++;
         horasTranscurridas = 0;
         startTime = System.currentTimeMillis();
-        System.out.println("Quedan: " + diasRestantes + " para la entrega");
+        System.out.println("Quedan: " + getDaysDeadline() + " para la entrega");
     }
 
     public int obtenerDiasTranscurridos() {
@@ -89,39 +90,39 @@ public class Gerente extends Thread {
 
     @Override
     public void run() {
-        while (diasRestantes > 0) {
-        System.out.println(diasRestantes);
+        while (plant.daysDeadline > 0) {
+        System.out.println(plant.daysDeadline);
 
         for (int i = 0; i < 48; i++) { // 48 intervalos de 30 minutos en un día
 
             if (i < 32) { // Las primeras 16 horas del día
                 if (i % 2 == 0) { // Comienzo de una hora
                     if (!estaViendoCarreras()) {
-                        System.out.println("Gerente viendo carreras a las " + (i / 2) + ":00");
+//                        System.out.println("Gerente viendo carreras a las " + (i / 2) + ":00");
                         verCarreras();
                     }
                 } else { // Media hora
                     if (estaViendoCarreras()) {
-                        System.out.println("Gerente deja de ver carreras a las " + (i / 2) + ":30");
+//                        System.out.println("Gerente deja de ver carreras a las " + (i / 2) + ":30");
                         dejarDeVerCarreras();
                     }
                 }
             } else { // El resto del día
                 if (estaViendoCarreras()) {
-                    System.out.println("Gerente trabajando en la contabilidad a las " + (i / 2));
+//                    System.out.println("Gerente trabajando en la contabilidad a las " + (i / 2));
                     dejarDeVerCarreras();
                 }
             }
 
             try {
-                Thread.sleep(dayDurationInMs / 48); // Espera el intervalo de 30 minutos
+                Thread.sleep(plant.dayDurationInMs / 48); // Espera el intervalo de 30 minutos
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
         // Actualizar contador de días restantes
-        diasRestantes--;
+        plant.daysDeadline--;
         }
     }
 }

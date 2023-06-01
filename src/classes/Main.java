@@ -14,11 +14,9 @@ import productores.DirectorPlanta;
  */
 public class Main {
 
-    public static int[] valoresIniciales = Configuracion.leerDatosIniciales();
+    public static int[] valoresIniciales = Configuracion.leerDatosIniciales(); //valoresIniciales[0]:duracion dia, [1]:dias para entrega
     public static VehiclePlant LamboPlant = new VehiclePlant("Lamborghini", 11, valoresIniciales[0], valoresIniciales[1], true);
     public static VehiclePlant RollsPlant = new VehiclePlant("RollsRoyce", 19, valoresIniciales[0], valoresIniciales[1], false);
-    public static Gerente gerente;
-    public static DirectorPlanta director;
 
     /**
      * @param args the command line arguments
@@ -35,6 +33,12 @@ public class Main {
 ////       LamboPlant = new VehiclePlant("Lamborghini", 11, valoresIniciales[0], valoresIniciales[1], true);
 //       RollsPlant = new VehiclePlant("RollsRoyce", 19, valoresIniciales[0], valoresIniciales[1], false);
 //       
+        
+       
+       
+////////////       LamboPlant = new VehiclePlant("Lamborghini", 11, true);
+////////////       RollsPlant = new VehiclePlant("RollsRoyce", 19, false);
+       
 //       Configuracion configuracion = new Configuracion();
 //       Configuracion configLambo = new Configuracion();
 //       
@@ -51,16 +55,7 @@ public class Main {
 //       configuracion.imprimirConfiguracion();
 //        System.out.println("lambo\n");
 //        configLambo.imprimirConfiguracion();
-//        Dashboard interfaz = new Dashboard();
-//        interfaz.setVisible(true);
-        // Crear objetos de los hilos
-//        DirectorPlanta director = new DirectorPlanta(7, 0);
-        director = new DirectorPlanta(7,0);
-        gerente = new Gerente(7,0,10000,7);
-
         // Iniciar los hilos
-        director.start();
-        gerente.start();
     }
     
 }

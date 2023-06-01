@@ -1,5 +1,5 @@
 motor=1
-chasis=2
+chasis=1
 accesorios=1
 carroceria=1
 ruedas=1

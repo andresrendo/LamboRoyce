@@ -48,6 +48,14 @@ public class Almacen {
         System.out.println("Estoy en warehouse");
     }
     
+    public int getTotalCarros() {
+        return totalCarros;
+    }
+
+    public int getTotalCarrosAcc() {
+        return totalCarrosAcc;
+    }
+    
     public void updateStorage(String workerType, int finishedPart, boolean isLambo) {
         
         switch (workerType) {
