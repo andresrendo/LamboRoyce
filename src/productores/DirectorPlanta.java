@@ -49,15 +49,15 @@ public class DirectorPlanta extends Thread {
                     e.printStackTrace();
                 }
                 // Actualizar saldo y reiniciar contador
-                saldo += calcularGananciaEnviada();
-                diasRestantes = reiniciarContador();
+//                saldo += calcularGananciaEnviada();
+//                diasRestantes = reiniciarContador();
             } else {
                 // Realizar tareas administrativas
-                System.out.println("Realizando tareas administrativas...");
+                System.out.println("Director realizando tareas administrativas...");
                 // Verificar lo que está haciendo el gerente
                 try {
                     verificarActividadGerente();
-                    Thread.sleep(Main.gerente.getDayDurationInMs() * 25 / 1440);
+                    Thread.sleep(Main.gerente.getDayDurationInMs());
                 } catch(InterruptedException e){
                     e.printStackTrace();
                 }
@@ -80,7 +80,7 @@ public class DirectorPlanta extends Thread {
         Random random = new Random();
         int horaAleatoria = random.nextInt(24);
         int minutosAleatorios = random.nextInt(60);
-        System.out.println("Director revisando al gerente a las " + horaAleatoria + ":" + minutosAleatorios);
+        System.out.println("Director supervisando al gerente");
 
         if (Main.gerente.estaViendoCarreras()) {
             // El gerente está viendo carreras
