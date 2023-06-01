@@ -27,12 +27,12 @@ public class Main {
      */
     public static void main(String[] args) {
 
-
-//       int[] valoresIniciales =  Configuracion.leerDatosIniciales(); //valoresIniciales[0]:duracion dia, [1]:dias para entrega
-//       System.out.println(valoresIniciales[0] + "," +  valoresIniciales[1]);
-       
-//       LamboPlant = new VehiclePlant("Lamborghini", 11, valoresIniciales[0], valoresIniciales[1], true);
-//       RollsPlant = new VehiclePlant("RollsRoyce", 19, valoresIniciales[0], valoresIniciales[1], false);
+        System.out.println("ola");
+//        boolean isLambo = true;
+       director = new DirectorPlanta(1,0, true);
+       gerente = new Gerente(1,0,8000);
+       LamboPlant = new VehiclePlant("Lamborghini", 11, true);
+       RollsPlant = new VehiclePlant("RollsRoyce", 19, false);
        
 //       Configuracion configuracion = new Configuracion();
 //       Configuracion configLambo = new Configuracion();
@@ -51,11 +51,6 @@ public class Main {
 //        configLambo.imprimirConfiguracion();
         Dashboard interfaz = new Dashboard();
         interfaz.setVisible(true);
-        // Crear objetos de los hilos
-        boolean isLambo = true;
-        director = new DirectorPlanta(1,0, isLambo);
-        gerente = new Gerente(1,0,8000);
-
         // Iniciar los hilos
         director.start();
         gerente.start();

@@ -66,6 +66,7 @@ public class DirectorPlanta extends Thread {
 //
 //                // Actualizar saldo con las ganancias
 //                saldo += ganancias;
+                    System.out.println(Main.LamboPlant.getWorker(1));
                 int sueldosPagados = calcularSalariosMensuales(isLambo);
                 System.out.println(sueldosPagados);
 //                saldo += sueldosPagados;
@@ -131,19 +132,24 @@ public class DirectorPlanta extends Thread {
  
     
     public int calcularSalariosMensuales(boolean isLambo){
-        int maxWorkersLambo = Main.LamboPlant.maxWorkers();
+//        System.out.println(Main.LamboPlant.maxWorkers());
+//        int maxWorkersLambo = Main.LamboPlant.maxWorkers();
+//        System.out.println(maxWorkersLambo);
         int maxWorkersRoyce = Main.RollsPlant.maxWorkers();
+//        System.out.println(maxWorkersRoyce);
         int total = 0;
-//        boolean isLambo = true;
-        
         if(isLambo){
-                for(int i = 0; i<maxWorkersLambo;i++){
+                for(int i = 0; i< Main.LamboPlant.emplContratados(); i++){
+                    System.out.println(i);
                     total += Main.LamboPlant.getWorker(i).getSueldoTotal();
+                    
+//                    System.out.println(total);
                 }
+                System.out.println(total);
                 return total;
             }else{
                 for(int i = 0; i<maxWorkersRoyce;i++){
-                    total += Main.RollsPlant.getWorker(i).getSueldoTotal();
+//                    total += Main.RollsPlant.getWorker(i).getSueldoTotal();
                     }
             return total;
             }

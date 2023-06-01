@@ -22,7 +22,7 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         configLambo.leerConfiguracion("src//classes//configuracionLambo.txt");
-        RollsPlant = new VehiclePlant("RollsRoyce", 19, valoresIniciales[0], valoresIniciales[1], false);
+        RollsPlant = new VehiclePlant("RollsRoyce", 19, false);
     }
 
     /**
