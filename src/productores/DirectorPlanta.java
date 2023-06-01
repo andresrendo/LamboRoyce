@@ -38,6 +38,7 @@ public class DirectorPlanta extends Thread {
     
     @Override
     public void run() {
+        Random random = new Random(); // Generador de números aleatorios
         while (true) {
             if (diasRestantes == 0) {
                 // Enviar vehículos al concesionario
@@ -50,18 +51,28 @@ public class DirectorPlanta extends Thread {
                 }
                 // Actualizar saldo y reiniciar contador
 //                saldo += calcularGananciaEnviada();
-//                diasRestantes = reiniciarContador();
             } else {
                 // Realizar tareas administrativas
                 System.out.println("Director realizando tareas administrativas...");
                 // Verificar lo que está haciendo el gerente
                 try {
-                    verificarActividadGerente();
-                    Thread.sleep(Main.gerente.getDayDurationInMs());
-                } catch(InterruptedException e){
-                    e.printStackTrace();
+                int randomHour = random.nextInt(24); // Generar una hora aleatoria del día
+                int randomMin = random.nextInt(60);
+                for (int i = 0; i < 24; i++) { // Simulando cada hora del día
+                    if (i == randomHour) {
+                        for(int j=0; j<60;j++){
+                            if(j==randomMin){
+                                verificarActividadGerente();
+                            }
+                            Thread.sleep(Main.gerente.getDayDurationInMs() / (24*60));
+                        }
+                    }
+                    Thread.sleep(Main.gerente.getDayDurationInMs() / 24); // Espera una hora en tiempo de simulación
                 }
-            }
+                        } catch(InterruptedException e){
+                            e.printStackTrace();
+                        }
+                    }
         }
     }
 
@@ -76,10 +87,6 @@ public class DirectorPlanta extends Thread {
     }
 
     public void verificarActividadGerente() {
-        // Obtener una hora aleatoria del día
-        Random random = new Random();
-        int horaAleatoria = random.nextInt(24);
-        int minutosAleatorios = random.nextInt(60);
         System.out.println("Director supervisando al gerente");
 
         if (Main.gerente.estaViendoCarreras()) {
