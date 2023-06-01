@@ -4,19 +4,27 @@
  * and open the template in the editor.
  */
 package classes;
+
+import productores.Gerente;
+import productores.DirectorPlanta;
+
 /**
  *
  * @author Juan
  */
 public class Main {
+
     public static int[] valoresIniciales = Configuracion.leerDatosIniciales();
     public static VehiclePlant LamboPlant = new VehiclePlant("Lamborghini", 11, valoresIniciales[0], valoresIniciales[1], true);
     public static VehiclePlant RollsPlant = new VehiclePlant("RollsRoyce", 19, valoresIniciales[0], valoresIniciales[1], false);
+    public static Gerente gerente;
+    public static DirectorPlanta director;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
         
         
         dashboard.GlobalUI.getMainUI().getLGdashboard1().setLamboPlant(LamboPlant);
@@ -38,11 +46,21 @@ public class Main {
 //        // Realizar otras operaciones de configuración
 //
 //       // Guardar los valores actualizados en el archivo
+
 //       configuracion.actualizarConfiguracion("src//classes//configuracionRolls.txt");
 //       configuracion.imprimirConfiguracion();
 //        System.out.println("lambo\n");
 //        configLambo.imprimirConfiguracion();
-        
+//        Dashboard interfaz = new Dashboard();
+//        interfaz.setVisible(true);
+        // Crear objetos de los hilos
+//        DirectorPlanta director = new DirectorPlanta(7, 0);
+        director = new DirectorPlanta(7,0);
+        gerente = new Gerente(7,0,10000,7);
+
+        // Iniciar los hilos
+        director.start();
+        gerente.start();
     }
     
 }

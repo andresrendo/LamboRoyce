@@ -42,17 +42,22 @@ public class VehiclePlant {
     
     //leer txt para ver cantidad de empleados por departamento
     public void actualizarEmplPorDepto() {        
+
         String parametrosEmpl;
-        if(this.isLambo){
+        if(isLambo){
             parametrosEmpl = "src//classes//configuracionLambo.txt";
         }else{
             parametrosEmpl = "src//classes//configuracionRolls.txt";
         }
+                
+        this.emplPorDepto = this.configuracion.leerConfiguracion(parametrosEmpl);//leer txt para ver cantidad de empleados por departamento
         
-        this.emplPorDepto = this.configuracion.leerConfiguracion(parametrosEmpl);
+        crearWorkers();
     }
     
-    public void crearWorkers(){
+//    public void setUpW()
+    
+    public void crearWorkers(){                        
         int cont = 0;
         
         for(int i = 0; i<this.emplPorDepto.length; i++){
@@ -84,10 +89,10 @@ public class VehiclePlant {
         return this.workers[i];
     }
     
-    public void reorganizarTrabajadores(JSpinner[] spinners){
+    public void reorganizarTrabajadores(){
         int cantCounter = 0;
         int workersCounter = 0;
-        //int[] producersQty = new int[6];
+        //int[] workersQty = new int[6];
         
         actualizarEmplPorDepto();        
         
@@ -99,8 +104,7 @@ public class VehiclePlant {
                 getWorker(workersCounter).setWorkerType(TipoWorker.getPiezaCreada(cantCounter));
                 workersCounter += 1;
             }
-            
-            //producersQty[cantCounter] = typeAmount;
+                        
             cantCounter+=1;
         }
         
