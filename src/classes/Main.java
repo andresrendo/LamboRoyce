@@ -39,6 +39,7 @@ public class Main {
        configuracion.imprimirConfiguracion();
         System.out.println("lambo\n");
         configLambo.imprimirConfiguracion();
+        
     }
     
 }

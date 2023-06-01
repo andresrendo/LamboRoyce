@@ -98,7 +98,11 @@ public class Worker extends Thread{
         setCuentaPieza(0);
         setIsEnsamblador(false);                
     }
-        
+    
+    public void setWorkerType(String type){
+        this.workerPieza = type;
+        this.initializeWorker();
+    }
     
     private double getProdChasisDia(boolean isLambo){
         if (isLambo){

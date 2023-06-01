@@ -93,7 +93,7 @@ public class Almacen {
                     if (this.motorQty > this.maxMotorQty){
                         this.motorQty = this.maxMotorQty;
                     }
-                    System.out.println("motoress producidas: " + this.motorQty);
+                    System.out.println("motores producidos: " + this.motorQty);
                 }
                 break;
                 

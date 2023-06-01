@@ -4,17 +4,30 @@
  */
 package dashboard;
 
+import classes.Configuracion;
+import classes.VehiclePlant;
+import javax.swing.JSpinner;
+import productores.TipoWorker;
+
 /**
  *
  * @author mannith
  */
 public class Dashboard extends javax.swing.JFrame {
+    int[] valoresIniciales =  Configuracion.leerDatosIniciales(); //valoresIniciales[0]:duracion dia, [1]:dias para entrega
+    VehiclePlant LamboPlant = new VehiclePlant("Lamborghini", 11, valoresIniciales[0], valoresIniciales[1], true);
 
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
+        this.qtyWChasis.setValue(LamboPlant.emplPorDepto[0]);
+        this.qtyWCarroceria.setValue(LamboPlant.emplPorDepto[1]);
+        this.qtyWMotor.setValue(LamboPlant.emplPorDepto[2]);
+        this.qtyWAcc.setValue(LamboPlant.emplPorDepto[3]);
+        this.qtyWRuedas.setValue(LamboPlant.emplPorDepto[4]);
+        this.qtyWEnsamblador.setValue(LamboPlant.emplPorDepto[5]);
     }
 
     /**
@@ -73,7 +86,15 @@ public class Dashboard extends javax.swing.JFrame {
         qtyCarrosProducidos3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        qtyWChasis.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        qtyWChasis.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                qtyWChasisStateChanged(evt);
+            }
+        });
         getContentPane().add(qtyWChasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
         workerChasis.setText("Trabajadores de Chasis:");
@@ -81,22 +102,37 @@ public class Dashboard extends javax.swing.JFrame {
 
         workerCarroceria.setText("Trabajadores de Carroceria:");
         getContentPane().add(workerCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        qtyWMotor.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         getContentPane().add(qtyWMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
 
         workerMotor.setText("Trabajadores de Motor:");
         getContentPane().add(workerMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        qtyWCarroceria.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        qtyWCarroceria.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                qtyWCarroceriaStateChanged(evt);
+            }
+        });
         getContentPane().add(qtyWCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
 
         workerRuedas.setText("Trabajadores de Ruedas:");
         getContentPane().add(workerRuedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+
+        qtyWRuedas.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         getContentPane().add(qtyWRuedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
         workerAcc.setText("Trabajadores de Accesorios:");
         getContentPane().add(workerAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+
+        qtyWAcc.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         getContentPane().add(qtyWAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
         workerEnsamblador.setText("Ensambladores:");
         getContentPane().add(workerEnsamblador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+
+        qtyWEnsamblador.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         getContentPane().add(qtyWEnsamblador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
 
         startPlant.setFont(new java.awt.Font("Liberation Sans", 0, 30)); // NOI18N
@@ -292,6 +328,22 @@ public class Dashboard extends javax.swing.JFrame {
     private void gananciaNetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gananciaNetaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gananciaNetaActionPerformed
+
+    private void qtyWChasisStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_qtyWChasisStateChanged
+        // TODO add your handling code here:
+        int valor = Integer.parseInt(this.qtyWChasis.getValue().toString());
+        // validar valor para ver si no excede limite de workers
+        valor = Functions.validarCantEmpl(LamboPlant, TipoWorker.chasis, valor);
+        this.qtyWChasis.setValue(valor);
+    }//GEN-LAST:event_qtyWChasisStateChanged
+
+    private void qtyWCarroceriaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_qtyWCarroceriaStateChanged
+        // TODO add your handling code here:
+        int valor = Integer.parseInt(this.qtyWCarroceria.getValue().toString());
+        // validar valor para ver si no excede limite de workers
+        valor = Functions.validarCantEmpl(LamboPlant, TipoWorker.carroceria, valor);
+        this.qtyWCarroceria.setValue(valor);
+    }//GEN-LAST:event_qtyWCarroceriaStateChanged
 
     /**
      * @param args the command line arguments
