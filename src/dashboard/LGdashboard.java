@@ -94,6 +94,13 @@ public class LGdashboard extends javax.swing.JPanel {
         String cant = Integer.toString(num);
         this.diasTotales.setText(cant);
     }
+    public void setSueldoDescontado(int num){
+        String cant = Integer.toString(num);
+        this.sueldoDescontado.setText(cant + "$");
+    }
+    public DashboardInfo getDashboardInfo(){
+        return this.dashboardInfo1;
+    }
     public void setValoresAlmacen(int chasis, int carr, int motor, int ruedas, int acc){
         String newChasis = Integer.toString(chasis);
         String newCarr = Integer.toString(carr);
@@ -140,18 +147,12 @@ public class LGdashboard extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         diasTotales = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        sueldoMensual = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         directorAccion = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         gerenteAccion = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        gananciaNeta = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        qtyCarrosProducidos3 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         qtyChasis = new javax.swing.JLabel();
@@ -174,6 +175,9 @@ public class LGdashboard extends javax.swing.JPanel {
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         deadlineLabel = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        sueldoDescontado = new javax.swing.JLabel();
+        dashboardInfo1 = new dashboard.DashboardInfo();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -295,26 +299,11 @@ public class LGdashboard extends javax.swing.JPanel {
         });
         add(diasTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 40, 50, -1));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel17.setText("Sueldo Mensual:");
-        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, 30));
-
-        sueldoMensual.setEditable(false);
-        sueldoMensual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        sueldoMensual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        sueldoMensual.setText("0");
-        sueldoMensual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sueldoMensualActionPerformed(evt);
-            }
-        });
-        add(sueldoMensual, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 60, -1));
-
         jLabel18.setFont(new java.awt.Font("Liberation Sans", 2, 36)); // NOI18N
         jLabel18.setText("Planta Lamborghini");
         add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 350, -1));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel19.setText("Director de la planta está:");
         add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
 
@@ -328,7 +317,7 @@ public class LGdashboard extends javax.swing.JPanel {
         });
         add(directorAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 160, -1));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel20.setText("Gerente de la planta está:");
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, 30));
 
@@ -345,25 +334,6 @@ public class LGdashboard extends javax.swing.JPanel {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel21.setText("Empleados disponibles:");
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, 20));
-
-        jLabel22.setText("Ganancia neta:");
-        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
-
-        gananciaNeta.setText("0");
-        gananciaNeta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gananciaNetaActionPerformed(evt);
-            }
-        });
-        add(gananciaNeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 60, -1));
-
-        jLabel23.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
-        jLabel23.setText("Ganancia Total:");
-        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, -1, -1));
-
-        qtyCarrosProducidos3.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
-        qtyCarrosProducidos3.setText("0");
-        add(qtyCarrosProducidos3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, 110, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Máximo");
@@ -444,11 +414,11 @@ public class LGdashboard extends javax.swing.JPanel {
         qtyCarrosAccProducidos.setText("0");
         add(qtyCarrosAccProducidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, 40, 30));
 
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel27.setText("Faltas:");
         add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
 
-        faltasLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        faltasLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         faltasLabel.setText("0");
         add(faltasLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 20, 20));
 
@@ -463,6 +433,15 @@ public class LGdashboard extends javax.swing.JPanel {
         deadlineLabel.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         deadlineLabel.setText("0");
         add(deadlineLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, 30, 30));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setText("Total descontado:");
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, -1, -1));
+
+        sueldoDescontado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sueldoDescontado.setText("0");
+        add(sueldoDescontado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 90, -1));
+        add(dashboardInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 360, 220));
     }// </editor-fold>//GEN-END:initComponents
 
     private void qtyWChasisStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_qtyWChasisStateChanged
@@ -523,10 +502,6 @@ public class LGdashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_diasTotalesActionPerformed
 
-    private void sueldoMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sueldoMensualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sueldoMensualActionPerformed
-
     private void directorAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorAccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_directorAccionActionPerformed
@@ -535,18 +510,14 @@ public class LGdashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_gerenteAccionActionPerformed
 
-    private void gananciaNetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gananciaNetaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gananciaNetaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private dashboard.DashboardInfo dashboardInfo1;
     private javax.swing.JLabel deadlineLabel;
     private javax.swing.JTextField diasTotales;
     private javax.swing.JTextField directorAccion;
     private javax.swing.JLabel empleadosDispo;
     private javax.swing.JLabel faltasLabel;
-    private javax.swing.JTextField gananciaNeta;
     private javax.swing.JTextField gerenteAccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -562,8 +533,6 @@ public class LGdashboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -581,7 +550,6 @@ public class LGdashboard extends javax.swing.JPanel {
     private javax.swing.JLabel qtyCarroceria;
     private javax.swing.JLabel qtyCarrosAccProducidos;
     private javax.swing.JLabel qtyCarrosProducidos;
-    private javax.swing.JTextField qtyCarrosProducidos3;
     private javax.swing.JLabel qtyChasis;
     private javax.swing.JLabel qtyMotores;
     private javax.swing.JLabel qtyRuedas;
@@ -591,7 +559,7 @@ public class LGdashboard extends javax.swing.JPanel {
     private javax.swing.JSpinner qtyWEnsamblador;
     private javax.swing.JSpinner qtyWMotor;
     private javax.swing.JSpinner qtyWRuedas;
-    private javax.swing.JTextField sueldoMensual;
+    private javax.swing.JLabel sueldoDescontado;
     private javax.swing.JLabel workerAcc;
     private javax.swing.JLabel workerCarroceria;
     private javax.swing.JLabel workerChasis;

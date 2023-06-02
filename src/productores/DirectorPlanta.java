@@ -17,6 +17,8 @@ import java.util.concurrent.Semaphore;
 public class DirectorPlanta extends Thread {
     //private int diasRestantes;
     //private Gerente gerente;
+    private double sueldoTotal;
+    private double sueldoPorHora;
     private int faltas;
     private boolean isLambo;
     private VehiclePlant plant;
@@ -25,11 +27,25 @@ public class DirectorPlanta extends Thread {
         this.plant = plant;
         this.faltas = 0;
         this.isLambo = isLambo;
+        this.sueldoPorHora = 30;
+        this.sueldoTotal = 0;
     }
     
     
     public int getFaltas() {
         return faltas;
+    }
+    
+    public void paySueldo(){
+        this.sueldoTotal += (getSueldoHora()*24);
+    }
+    
+    public double getSueldoHora(){
+        return this.sueldoPorHora;
+    }
+    
+    public double getSueldoTotal(){
+        return this.sueldoTotal;
     }
 
     public int calcularSaldoFinalGerente() {
@@ -113,8 +129,11 @@ public class DirectorPlanta extends Thread {
             // El gerente está viendo carreras
             System.out.println("Falta al gerente por ver carreras. Se descontarán $50 de su sueldo.");
             faltas++;
+            
             if(isLambo){
                 dashboard.GlobalUI.getMainUI().getLGdashboard1().setFaltasLabel(faltas);
+                int sal = this.calcSalarioRestado(faltas);
+                dashboard.GlobalUI.getMainUI().getLGdashboard1().setSueldoDescontado(sal);
             }else{
                 //todo rolls
             }
@@ -132,6 +151,10 @@ public class DirectorPlanta extends Thread {
         }
     }
  
+    public int calcSalarioRestado(int faltas){
+        int totalRestado = faltas * 50;
+        return totalRestado;
+    }
     
     public int calcularSalariosMensuales(boolean isLambo){
 

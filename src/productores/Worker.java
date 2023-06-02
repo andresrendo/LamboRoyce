@@ -67,33 +67,27 @@ public class Worker extends Thread{
     private void initializeWorker(){
         
         if (this.workerPieza.equals(TipoWorker.chasis)) {
-            this.sueldoPorHora = 10;
-            this.sueldoTotal = 10 * 24 * 30; 
+            this.sueldoPorHora = 10; 
             this.produceAlDia = this.getProdChasisDia(this.isLambo);
         }
         else if (this.workerPieza.equals(TipoWorker.carroceria)) {
             this.sueldoPorHora = 13;
-            this.sueldoTotal = this.sueldoPorHora * 24 * 30; 
             this.produceAlDia = this.getProdCarroceriaDia(this.isLambo);
         }
         else if (this.workerPieza.equals(TipoWorker.motor)) {
-            this.sueldoPorHora = 20;
-            this.sueldoTotal = this.sueldoPorHora * 24 * 30; 
+            this.sueldoPorHora = 20; 
             this.produceAlDia = this.getProdMotorDia(this.isLambo);
         }
         else if (this.workerPieza.equals(TipoWorker.ruedas)) {
              this.sueldoPorHora = 8;
-             this.sueldoTotal = this.sueldoPorHora * 24 * 30; 
              this.produceAlDia = this.getProdRuedasDia(this.isLambo);
         }
         else if (this.workerPieza.equals(TipoWorker.accesorios)) {
              this.sueldoPorHora = 17;
-             this.sueldoTotal = this.sueldoPorHora * 24 * 30; 
              this.produceAlDia = this.getProdAccDia(this.isLambo);        
         }
         else if (this.workerPieza.equals(TipoWorker.ensamblador)) {
              this.sueldoPorHora = 25;
-             this.sueldoTotal = this.sueldoPorHora * 24 * 30; 
              this.produceAlDia = 0;
              this.isEnsamblador = true;
              return;        

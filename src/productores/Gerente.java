@@ -94,6 +94,7 @@ public class Gerente extends Thread {
     @Override
     public void run() {
         while (true) {
+            this.paySueldo();
             if(plant.daysDeadline > 0){
                     System.out.println(plant.daysDeadline);
 

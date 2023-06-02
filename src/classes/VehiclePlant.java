@@ -16,7 +16,7 @@ import productores.Worker;
  *
  * @author mannith
  */
-public class VehiclePlant {
+public class VehiclePlant extends Thread{
     private String name;
     public int maxWorkerQty;    
     private Worker[] workers;
@@ -49,13 +49,49 @@ public class VehiclePlant {
         actualizarEmplPorDepto();        
         crearWorkers();
         startGerenteDir();
-    }                           
+    }       
+    
+    @Override
+    public void run() {
+              while(true){
+            try {                
+                //get sueldos
+                //get ganancias
+                // get utilidad (ganancias - sueldos)
+                
+                
+                Thread.sleep(this.dayDurationInMs);
+            } catch (InterruptedException ex){
+                System.out.println("error");
+            }
+        }
+    }
 
     public void startGerenteDir(){
         this.gerente.start();
         this.director.start();
     }
     
+    public int getSueldosPagados(){
+        int total = 0;
+        for(int i = 0; i<this.workers.length; i++){
+            total += this.getWorker(i).getSueldoTotal();
+        }
+        total += this.getDirector().getSueldoTotal();
+        total += this.getSueldoGerente();
+        return (total/1000);
+    }
+    
+    public int getSueldoGerente(){
+        int total = 0;
+        int faltas = 0;
+        
+        faltas = this.director.getFaltas();
+        total = (int) this.gerente.getSueldoTotal();
+        total = total - (faltas * 50);
+        
+        return total;
+    }
     
     public void actualizarEmplPorDepto(){
         String parametrosEmpl;
@@ -145,6 +181,14 @@ public class VehiclePlant {
     
     public int restartDeadLine(){
         return this.daysDeadline = diasInicio;
+    }
+    
+    public DirectorPlanta getDirector(){
+        return this.director;
+    }
+    
+    public Gerente getGerente(){
+        return this.gerente;
     }
 
 }
