@@ -31,6 +31,7 @@ public class VehiclePlant extends Thread{
     public Gerente gerente;
     public DirectorPlanta director;
     public int diasInicio;
+    private int sueldosAcumulados;
 
     
     public VehiclePlant (String name, int maxWorkerQty, int dayDurationMs, int deadline, boolean isLambo) {
@@ -45,10 +46,14 @@ public class VehiclePlant extends Thread{
         this.director = new DirectorPlanta(this,isLambo);
         this.gerente = new Gerente(this,dayDurationMs);
         this.diasInicio = deadline;
+        this.sueldosAcumulados = 0;
+        
+        dashboard.GlobalUI.getMainUI().getMainDashboard().getDayDurationSpinner().setValue(this.dayDurationInMs/1000);
         
         actualizarEmplPorDepto();        
         crearWorkers();
         startGerenteDir();
+        this.start();
     }       
     
     @Override
@@ -56,8 +61,25 @@ public class VehiclePlant extends Thread{
               while(true){
             try {                
                 //get sueldos
+                int num = this.getSueldosPagados();
+                if(this.isLambo){
+                    dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoLg().setSueldosLabel(num);
+                    dashboard.GlobalUI.getMainUI().getLGdashboard1().getDashboardInfo().setSueldosLabel(num);
+                }else{
+                    dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setSueldosLabel(num);
+                    //todo rolls
+                }
                 //get ganancias
                 // get utilidad (ganancias - sueldos)
+                int ganancias = this.almacen.getCarsUtility(isLambo);
+                int utilidad = ganancias - num;
+                if(this.isLambo){
+                    dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoLg().setUtilidadTotal(utilidad);
+                    dashboard.GlobalUI.getMainUI().getLGdashboard1().getDashboardInfo().setUtilidadTotal(utilidad);
+                }else{
+                    dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setUtilidadTotal(utilidad);
+                    //todo rolls
+                }
                 
                 
                 Thread.sleep(this.dayDurationInMs);
@@ -79,7 +101,8 @@ public class VehiclePlant extends Thread{
         }
         total += this.getDirector().getSueldoTotal();
         total += this.getSueldoGerente();
-        return (total/1000);
+        this.sueldosAcumulados += total;
+        return (total);
     }
     
     public int getSueldoGerente(){

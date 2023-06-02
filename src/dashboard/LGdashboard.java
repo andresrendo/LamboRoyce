@@ -30,6 +30,7 @@ public class LGdashboard extends javax.swing.JPanel {
         this.LamboPlant = LamboPlant;
         setWorkersSpinners();
         setWorkersLeft();
+        GlobalUI.getMainUI().getMainDashboard().getDeadlineSpinner().setValue(LamboPlant.daysDeadline);
         //this.DeadlineSpinner.setValue();
     }
            

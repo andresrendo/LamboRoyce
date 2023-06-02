@@ -30,6 +30,7 @@ public class MainInterface extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        mainDashboard1 = new dashboard.MainDashboard();
         jPanel2 = new javax.swing.JPanel();
         lGdashboard1 = new dashboard.LGdashboard();
         jPanel3 = new javax.swing.JPanel();
@@ -37,16 +38,8 @@ public class MainInterface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 914, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
-        );
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(mainDashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 790, 480));
 
         jTabbedPane1.addTab("Dashboard", jPanel1);
 
@@ -136,9 +129,13 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private dashboard.LGdashboard lGdashboard1;
+    private dashboard.MainDashboard mainDashboard1;
     // End of variables declaration//GEN-END:variables
 
     public LGdashboard getLGdashboard1() {
         return lGdashboard1;
+    }
+    public MainDashboard getMainDashboard() {
+        return this.mainDashboard1;
     }
 }

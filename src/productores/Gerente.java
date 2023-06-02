@@ -147,9 +147,13 @@ public class Gerente extends Thread {
             // Actualizar contador de días restantes
             plant.daysDeadline--;
             diasTotales++;
+            dashboard.GlobalUI.getMainUI().getMainDashboard().getDeadlineSpinner().setValue(plant.daysDeadline);
+            //cambiar sueldo plant.calcsueldos
             if(plant.isLambo){
-                dashboard.GlobalUI.getMainUI().getLGdashboard1().setDeadlineLabel(plant.daysDeadline);  // set dias restantes UI
-                dashboard.GlobalUI.getMainUI().getLGdashboard1().setDiasTotales(diasTotales);   // set dias totales UI
+                // set dias restantes UI
+                dashboard.GlobalUI.getMainUI().getLGdashboard1().setDeadlineLabel(plant.daysDeadline);                 
+                // set dias totales UI
+                dashboard.GlobalUI.getMainUI().getLGdashboard1().setDiasTotales(diasTotales);
             }else{
                //todo rolls
             }

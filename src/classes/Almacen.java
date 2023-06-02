@@ -158,7 +158,8 @@ public class Almacen {
                     this.totalCarrosAcc += 1;
                     System.out.println("Hizo un carro");
                     int plata = this.getCarsUtility(isLambo);                    
-                    dashboard.GlobalUI.getMainUI().getLGdashboard1().getDashboardInfo().setGananciaNeta(plata);                    
+                    dashboard.GlobalUI.getMainUI().getLGdashboard1().getDashboardInfo().setGananciaNeta(plata);
+                    dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoLg().setGananciaNeta(plata);
                     dashboard.GlobalUI.getMainUI().getLGdashboard1().setQtyCarrosAccProd(this.totalCarrosAcc);
                     return true;
                 }
@@ -172,14 +173,15 @@ public class Almacen {
                     this.totalCarros += 1;
                     System.out.println("Hizo un carro");
                     int plata = this.getCarsUtility(isLambo);                    
-                    dashboard.GlobalUI.getMainUI().getLGdashboard1().getDashboardInfo().setGananciaNeta(plata); 
+                    dashboard.GlobalUI.getMainUI().getLGdashboard1().getDashboardInfo().setGananciaNeta(plata);
+                    dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoLg().setGananciaNeta(plata);
                     dashboard.GlobalUI.getMainUI().getLGdashboard1().setQtyCarrosProd(this.totalCarros);
                     return true;
                 }
                 return false;
             }
         
-        }else {// todo rolls cant carros
+        }else {
                 //revisar contador de carros para saber si necesito accesorios
             if (this.contConAcc == 6){
                 //revisar en almacen si estan disponibles las partes y accesorios y tomarlas
@@ -187,7 +189,10 @@ public class Almacen {
                     //restar stock del almacen y contadorAcc a 0
                     this.restarStock(isLambo, true);
                     this.contConAcc = 0;
-                    this.totalCarrosAcc += 1;                                        
+                    this.totalCarrosAcc += 1; 
+                    int plata = this.getCarsUtility(isLambo);
+                    dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setGananciaNeta(plata);
+                    // todo rolls ganancia rr dashboard
                     return true;
                 }
                 return false;
@@ -198,6 +203,9 @@ public class Almacen {
                     this.restarStock(isLambo, false);
                     this.contConAcc += 1;
                     this.totalCarros += 1;
+                    int plata = this.getCarsUtility(isLambo);
+                    dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setGananciaNeta(plata);
+                    // todo rolls ganancia rr dashboard
                     return true;
                 }
                 return false;
@@ -251,7 +259,6 @@ public class Almacen {
             total = (this.totalCarros * 400000) + (this.totalCarrosAcc * 750000);            
         }else{
             total = (this.totalCarros * 450000) + (this.totalCarrosAcc * 900000);
-            //todo rolls
         }
         return total;
     }
