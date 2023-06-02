@@ -32,6 +32,7 @@ public class VehiclePlant extends Thread{
     public DirectorPlanta director;
     public int diasInicio;
     private int sueldosAcumulados;
+    private int carrosVendidos;
 
     
     public VehiclePlant (String name, int maxWorkerQty, int dayDurationMs, int deadline, boolean isLambo) {
@@ -67,7 +68,7 @@ public class VehiclePlant extends Thread{
                     dashboard.GlobalUI.getMainUI().getLGdashboard1().getDashboardInfo().setSueldosLabel(num);
                 }else{
                     dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setSueldosLabel(num);
-                    //todo rolls
+                    dashboard.GlobalUI.getMainUI().getRrDashboard1().getDashboardInfo().setSueldosLabel(num);
                 }
                 //get ganancias
                 // get utilidad (ganancias - sueldos)
@@ -78,7 +79,7 @@ public class VehiclePlant extends Thread{
                     dashboard.GlobalUI.getMainUI().getLGdashboard1().getDashboardInfo().setUtilidadTotal(utilidad);
                 }else{
                     dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setUtilidadTotal(utilidad);
-                    //todo rolls
+                    dashboard.GlobalUI.getMainUI().getRrDashboard1().getDashboardInfo().setUtilidadTotal(utilidad);
                 }
                 
                 
@@ -203,7 +204,13 @@ public class VehiclePlant extends Thread{
     }
     
     public int restartDeadLine(){
-        return this.daysDeadline = diasInicio;
+        this.carrosVendidos += this.almacen.totalCarros + this.almacen.totalCarrosAcc;
+        if(isLambo){
+            dashboard.GlobalUI.getMainUI().getLGdashboard1().setCarrosVendidos(this.carrosVendidos);
+        }else{
+            dashboard.GlobalUI.getMainUI().getRrDashboard1().setCarrosVendidos(this.carrosVendidos);
+        }
+        return this.daysDeadline = diasInicio;        
     }
     
     public DirectorPlanta getDirector(){

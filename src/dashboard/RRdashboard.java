@@ -14,39 +14,39 @@ import productores.TipoWorker;
  *
  * @author Juan
  */
-public class LGdashboard extends javax.swing.JPanel {
-    VehiclePlant LamboPlant;
+public class RRdashboard extends javax.swing.JPanel {
+    VehiclePlant RollsPlant;
 //    public static int[] valoresIniciales =  Configuracion.leerDatosIniciales();
-//    VehiclePlant LamboPlant = new VehiclePlant("Lamborghini", 11, valoresIniciales[0], valoresIniciales[1], true);
+//    VehiclePlant RollsPlant = new VehiclePlant("Lamborghini", 11, valoresIniciales[0], valoresIniciales[1], true);
     
     /**
      * Creates new form a
      */
-    public LGdashboard() {
+    public RRdashboard() {
         initComponents();
     }
     
-    public void setLamboPlant(VehiclePlant LamboPlant){
-        this.LamboPlant = LamboPlant;
+    public void setRollsPlant(VehiclePlant RollsPlant){
+        this.RollsPlant = RollsPlant;
         setWorkersSpinners();
         setWorkersLeft();
-        GlobalUI.getMainUI().getMainDashboard().getDeadlineSpinner().setValue(LamboPlant.daysDeadline);
+        GlobalUI.getMainUI().getMainDashboard().getDeadlineSpinner().setValue(RollsPlant.daysDeadline);
         //this.DeadlineSpinner.setValue();
     }
            
     public void setWorkersLeft(){
-        int cantidadActual = Functions.calcWorkersQty(LamboPlant.emplPorDepto);
-        int restan = LamboPlant.maxWorkerQty - cantidadActual;
+        int cantidadActual = Functions.calcWorkersQty(RollsPlant.emplPorDepto);
+        int restan = RollsPlant.maxWorkerQty - cantidadActual;
         this.empleadosDispo.setText(Integer.toString(restan));
     }
     
     public void setWorkersSpinners(){
-        this.qtyWChasis.setValue(LamboPlant.emplPorDepto[0]);
-        this.qtyWCarroceria.setValue(LamboPlant.emplPorDepto[1]);
-        this.qtyWMotor.setValue(LamboPlant.emplPorDepto[2]);
-        this.qtyWAcc.setValue(LamboPlant.emplPorDepto[3]);
-        this.qtyWRuedas.setValue(LamboPlant.emplPorDepto[4]);
-        this.qtyWEnsamblador.setValue(LamboPlant.emplPorDepto[5]);
+        this.qtyWChasis.setValue(RollsPlant.emplPorDepto[0]);
+        this.qtyWCarroceria.setValue(RollsPlant.emplPorDepto[1]);
+        this.qtyWMotor.setValue(RollsPlant.emplPorDepto[2]);
+        this.qtyWAcc.setValue(RollsPlant.emplPorDepto[3]);
+        this.qtyWRuedas.setValue(RollsPlant.emplPorDepto[4]);
+        this.qtyWEnsamblador.setValue(RollsPlant.emplPorDepto[5]);
     }
     
     public void setChasisQtyLabel(int num){
@@ -100,7 +100,7 @@ public class LGdashboard extends javax.swing.JPanel {
         this.sueldoDescontado.setText(cant + "$");
     }
     public DashboardInfo getDashboardInfo(){
-        return this.dashboardInfo1;
+        return this.dashboardInfoRR;
     }
     public void setCarrosVendidos(int num) {
         String cant = Integer.toString(num);
@@ -182,7 +182,7 @@ public class LGdashboard extends javax.swing.JPanel {
         deadlineLabel = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         sueldoDescontado = new javax.swing.JLabel();
-        dashboardInfo1 = new dashboard.DashboardInfo();
+        dashboardInfoRR = new dashboard.DashboardInfo();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -305,7 +305,7 @@ public class LGdashboard extends javax.swing.JPanel {
         add(diasTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 40, 50, -1));
 
         jLabel18.setFont(new java.awt.Font("Liberation Sans", 2, 36)); // NOI18N
-        jLabel18.setText("Planta Lamborghini");
+        jLabel18.setText("Planta Rolls Royce");
         add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 350, -1));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -446,14 +446,14 @@ public class LGdashboard extends javax.swing.JPanel {
         sueldoDescontado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sueldoDescontado.setText("0");
         add(sueldoDescontado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 90, -1));
-        add(dashboardInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 360, 220));
+        add(dashboardInfoRR, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 360, 220));
     }// </editor-fold>//GEN-END:initComponents
 
     private void qtyWChasisStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_qtyWChasisStateChanged
         // TODO add your handling code here:
         int valor = Integer.parseInt(this.qtyWChasis.getValue().toString());
         // validar valor para ver si no excede limite de workers
-        valor = Functions.validarCantEmpl(LamboPlant, TipoWorker.chasis, valor);
+        valor = Functions.validarCantEmpl(RollsPlant, TipoWorker.chasis, valor);
         this.qtyWChasis.setValue(valor);
         this.setWorkersLeft();
     }//GEN-LAST:event_qtyWChasisStateChanged
@@ -462,7 +462,7 @@ public class LGdashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
         int valor = Integer.parseInt(this.qtyWMotor.getValue().toString());
         // validar valor para ver si no excede limite de workers
-        valor = Functions.validarCantEmpl(LamboPlant, TipoWorker.motor, valor);
+        valor = Functions.validarCantEmpl(RollsPlant, TipoWorker.motor, valor);
         this.qtyWMotor.setValue(valor);
         this.setWorkersLeft();
     }//GEN-LAST:event_qtyWMotorStateChanged
@@ -471,7 +471,7 @@ public class LGdashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
         int valor = Integer.parseInt(this.qtyWCarroceria.getValue().toString());
         // validar valor para ver si no excede limite de workers
-        valor = Functions.validarCantEmpl(LamboPlant, TipoWorker.carroceria, valor);
+        valor = Functions.validarCantEmpl(RollsPlant, TipoWorker.carroceria, valor);
         this.qtyWCarroceria.setValue(valor);
         this.setWorkersLeft();
     }//GEN-LAST:event_qtyWCarroceriaStateChanged
@@ -480,7 +480,7 @@ public class LGdashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
         int valor = Integer.parseInt(this.qtyWRuedas.getValue().toString());
         // validar valor para ver si no excede limite de workers
-        valor = Functions.validarCantEmpl(LamboPlant, TipoWorker.ruedas, valor);
+        valor = Functions.validarCantEmpl(RollsPlant, TipoWorker.ruedas, valor);
         this.qtyWRuedas.setValue(valor);
         this.setWorkersLeft();
     }//GEN-LAST:event_qtyWRuedasStateChanged
@@ -489,7 +489,7 @@ public class LGdashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
         int valor = Integer.parseInt(this.qtyWAcc.getValue().toString());
         // validar valor para ver si no excede limite de workers
-        valor = Functions.validarCantEmpl(LamboPlant, TipoWorker.accesorios, valor);
+        valor = Functions.validarCantEmpl(RollsPlant, TipoWorker.accesorios, valor);
         this.qtyWAcc.setValue(valor);
         this.setWorkersLeft();
     }//GEN-LAST:event_qtyWAccStateChanged
@@ -498,7 +498,7 @@ public class LGdashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
         int valor = Integer.parseInt(this.qtyWEnsamblador.getValue().toString());
         // validar valor para ver si no excede limite de workers
-        valor = Functions.validarCantEmpl(LamboPlant, TipoWorker.ensamblador, valor);
+        valor = Functions.validarCantEmpl(RollsPlant, TipoWorker.ensamblador, valor);
         this.qtyWEnsamblador.setValue(valor);
         this.setWorkersLeft();
     }//GEN-LAST:event_qtyWEnsambladorStateChanged
@@ -518,7 +518,7 @@ public class LGdashboard extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel carrosVendidos;
-    private dashboard.DashboardInfo dashboardInfo1;
+    private dashboard.DashboardInfo dashboardInfoRR;
     private javax.swing.JLabel deadlineLabel;
     private javax.swing.JTextField diasTotales;
     private javax.swing.JTextField directorAccion;

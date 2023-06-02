@@ -70,7 +70,7 @@ public class Almacen {
                     if(isLambo){
                         dashboard.GlobalUI.getMainUI().getLGdashboard1().setChasisQtyLabel(this.chasisQty);
                     }else {                         
-                        // todo rolls
+                        dashboard.GlobalUI.getMainUI().getRrDashboard1().setChasisQtyLabel(this.chasisQty);
                     }
                     System.out.println("Chasis producidos: " + this.chasisQty);
                 }
@@ -86,7 +86,7 @@ public class Almacen {
                     if(isLambo){
                         dashboard.GlobalUI.getMainUI().getLGdashboard1().setRuedasQtyLabel(this.wheelsQty);
                     }else{
-                        // todo rolls
+                        dashboard.GlobalUI.getMainUI().getRrDashboard1().setRuedasQtyLabel(this.wheelsQty);
                     }
                     System.out.println("Ruedas producidas: " + this.wheelsQty);
                 }
@@ -103,7 +103,7 @@ public class Almacen {
                     if(isLambo){
                         dashboard.GlobalUI.getMainUI().getLGdashboard1().setCarrQtyLabel(this.carroceriaQty);
                     }else{
-                        // todo rolls
+                        dashboard.GlobalUI.getMainUI().getRrDashboard1().setCarrQtyLabel(this.carroceriaQty);
                     }
                     System.out.println("Carrocerias producidas: " + this.carroceriaQty);
                 }
@@ -119,7 +119,7 @@ public class Almacen {
                     if(isLambo){
                         dashboard.GlobalUI.getMainUI().getLGdashboard1().setMotorQtyLabel(this.motorQty);
                     } else{
-                        // todo rolls
+                        dashboard.GlobalUI.getMainUI().getRrDashboard1().setMotorQtyLabel(this.motorQty);
                     }
                     System.out.println("motores producidos: " + this.motorQty);
                 }
@@ -135,7 +135,7 @@ public class Almacen {
                     if(isLambo){
                         dashboard.GlobalUI.getMainUI().getLGdashboard1().setAccQtyLabel(this.accesoriosQty);
                     } else{
-                        // todo rolls
+                        dashboard.GlobalUI.getMainUI().getRrDashboard1().setAccQtyLabel(this.accesoriosQty);
                     }
                     System.out.println("Accesorios producidos: " + this.accesoriosQty);
                 }
@@ -192,7 +192,9 @@ public class Almacen {
                     this.totalCarrosAcc += 1; 
                     int plata = this.getCarsUtility(isLambo);
                     dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setGananciaNeta(plata);
-                    // todo rolls ganancia rr dashboard
+                    //  ganancia rr dashboard
+                    dashboard.GlobalUI.getMainUI().getRrDashboard1().getDashboardInfo().setGananciaNeta(plata);
+                    dashboard.GlobalUI.getMainUI().getRrDashboard1().setQtyCarrosProd(this.totalCarros);
                     return true;
                 }
                 return false;
@@ -205,7 +207,9 @@ public class Almacen {
                     this.totalCarros += 1;
                     int plata = this.getCarsUtility(isLambo);
                     dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setGananciaNeta(plata);
-                    // todo rolls ganancia rr dashboard
+                    // ganancia rr dashboard
+                    dashboard.GlobalUI.getMainUI().getRrDashboard1().getDashboardInfo().setGananciaNeta(plata);
+                    dashboard.GlobalUI.getMainUI().getRrDashboard1().setQtyCarrosProd(this.totalCarros);
                     return true;
                 }
                 return false;
@@ -249,7 +253,7 @@ public class Almacen {
             if(conAcc){
                 this.accesoriosQty -= 5;
             }
-            // todo rolls
+            dashboard.GlobalUI.getMainUI().getRrDashboard1().setValoresAlmacen(chasisQty, carroceriaQty, motorQty, wheelsQty, accesoriosQty);
         }          
     }
     

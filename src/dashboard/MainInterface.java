@@ -34,6 +34,7 @@ public class MainInterface extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lGdashboard1 = new dashboard.LGdashboard();
         jPanel3 = new javax.swing.JPanel();
+        rRdashboard1 = new dashboard.RRdashboard();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -47,30 +48,19 @@ public class MainInterface extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lGdashboard1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE))
+            .addComponent(lGdashboard1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lGdashboard1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(lGdashboard1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Lamborghini", jPanel2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 914, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
-        );
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(rRdashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 560));
 
         jTabbedPane1.addTab("Rolls Royce", jPanel3);
 
@@ -130,6 +120,7 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private dashboard.LGdashboard lGdashboard1;
     private dashboard.MainDashboard mainDashboard1;
+    private dashboard.RRdashboard rRdashboard1;
     // End of variables declaration//GEN-END:variables
 
     public LGdashboard getLGdashboard1() {
@@ -137,5 +128,8 @@ public class MainInterface extends javax.swing.JFrame {
     }
     public MainDashboard getMainDashboard() {
         return this.mainDashboard1;
+    }
+    public RRdashboard getRrDashboard1() {
+        return this.rRdashboard1;
     }
 }

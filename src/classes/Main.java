@@ -26,6 +26,7 @@ public class Main {
         
         
         dashboard.GlobalUI.getMainUI().getLGdashboard1().setLamboPlant(LamboPlant);
+        dashboard.GlobalUI.getMainUI().getRrDashboard1().setRollsPlant(RollsPlant);
         dashboard.GlobalUI.openMainPage();
 //       int[] valoresIniciales =  Configuracion.leerDatosIniciales(); //valoresIniciales[0]:duracion dia, [1]:dias para entrega
 //       System.out.println(valoresIniciales[0] + "," +  valoresIniciales[1]);

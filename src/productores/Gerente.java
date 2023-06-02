@@ -109,7 +109,7 @@ public class Gerente extends Thread {
                         if(plant.isLambo){
                             dashboard.GlobalUI.getMainUI().getLGdashboard1().setGerenteAccion("Viendo carreras");
                         }else{
-                            //todo rolls
+                            dashboard.GlobalUI.getMainUI().getRrDashboard1().setGerenteAccion("Viendo carreras");
                         }
                     }
                 } else { // Media hora
@@ -120,7 +120,7 @@ public class Gerente extends Thread {
                         if(plant.isLambo){
                             dashboard.GlobalUI.getMainUI().getLGdashboard1().setGerenteAccion("Revisando contabilidad");
                         }else{
-                            //todo rolls
+                            dashboard.GlobalUI.getMainUI().getRrDashboard1().setGerenteAccion("Revisando contabilidad");
                         }
                     }
                 }
@@ -129,7 +129,7 @@ public class Gerente extends Thread {
                 if(plant.isLambo){
                     dashboard.GlobalUI.getMainUI().getLGdashboard1().setGerenteAccion("Cambiando contador");
                 }else{
-                    //todo rolls
+                    dashboard.GlobalUI.getMainUI().getRrDashboard1().setGerenteAccion("Cambiando contador");
                 }
                 
                 if (estaViendoCarreras()) {
@@ -155,7 +155,10 @@ public class Gerente extends Thread {
                 // set dias totales UI
                 dashboard.GlobalUI.getMainUI().getLGdashboard1().setDiasTotales(diasTotales);
             }else{
-               //todo rolls
+                // set dias restantes UI
+                dashboard.GlobalUI.getMainUI().getRrDashboard1().setDeadlineLabel(plant.daysDeadline);                 
+                // set dias totales UI
+                dashboard.GlobalUI.getMainUI().getRrDashboard1().setDiasTotales(diasTotales);
             }
 
             }else{

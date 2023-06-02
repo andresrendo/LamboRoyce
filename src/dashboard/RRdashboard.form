@@ -322,7 +322,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Liberation Sans" size="36" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Planta Lamborghini"/>
+        <Property name="text" type="java.lang.String" value="Planta Rolls Royce"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -726,7 +726,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="dashboard.DashboardInfo" name="dashboardInfo1">
+    <Component class="dashboard.DashboardInfo" name="dashboardInfoRR">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="540" y="290" width="360" height="220"/>
