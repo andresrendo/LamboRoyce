@@ -50,6 +50,7 @@ public class VehiclePlant extends Thread{
         this.sueldosAcumulados = 0;
         
         dashboard.GlobalUI.getMainUI().getMainDashboard().getDayDurationSpinner().setValue(this.dayDurationInMs/1000);
+        dashboard.GlobalUI.getMainUI().getMainDashboard().getDeadlineSpinner().setValue(this.daysDeadline);
         
         actualizarEmplPorDepto();        
         crearWorkers();
@@ -60,7 +61,8 @@ public class VehiclePlant extends Thread{
     @Override
     public void run() {
               while(true){
-            try {                
+            try {       
+//                this.updateDeadlineDurationDeTxt();
                 //get sueldos
                 int num = this.getSueldosPagados();
                 if(this.isLambo){
@@ -80,12 +82,7 @@ public class VehiclePlant extends Thread{
                 }else{
                     dashboard.GlobalUI.getMainUI().getMainDashboard().getDashboardInfoRr().setUtilidadTotal(utilidad);
                     dashboard.GlobalUI.getMainUI().getRrDashboard1().getDashboardInfo().setUtilidadTotal(utilidad);
-                }
-                
-                //setear daysdeadline y duration en UI
-                dashboard.GlobalUI.getMainUI().getMainDashboard().setDeadlineSpinner(this.daysDeadline);
-                dashboard.GlobalUI.getMainUI().getMainDashboard().setDayDurationSpinner((int) (this.dayDurationInMs/1000));
-                
+                }                                
                 
                 Thread.sleep(this.dayDurationInMs);
             } catch (InterruptedException ex){
@@ -99,6 +96,15 @@ public class VehiclePlant extends Thread{
         this.director.start();
     }
     
+    public void updateDeadlineDurationDeTxt() {
+        int[] datos = Configuracion.leerDatosIniciales();
+        this.dayDurationInMs = datos[0];
+        this.daysDeadline = datos[1];
+        //setear daysdeadline y duration en UI
+        dashboard.GlobalUI.getMainUI().getMainDashboard().setDeadlineSpinner(this.daysDeadline);
+        dashboard.GlobalUI.getMainUI().getMainDashboard().setDayDurationSpinner((int) (this.dayDurationInMs/1000));
+    }
+    
     public int getSueldosPagados(){
         int total = 0;
         for(int i = 0; i<this.workers.length; i++){
@@ -108,6 +114,10 @@ public class VehiclePlant extends Thread{
         total += this.getSueldoGerente();
         this.sueldosAcumulados += total;
         return (total);
+    }
+    
+    public void setDiasInicio(int dias){
+        this.diasInicio = dias;
     }
     
     public int getSueldoGerente(){

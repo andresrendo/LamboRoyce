@@ -63,12 +63,13 @@ public class Functions {
             JOptionPane.showMessageDialog(null, "No se pudo guardar la información");
         }
         
-        Main.LamboPlant.setDayDurationInMs(durationDayMs);
         Main.LamboPlant.setDaysDeadline(deadline);
+        Main.LamboPlant.setDayDurationInMs(durationDayMs);
+        Main.LamboPlant.setDiasInicio(deadline);
         
-        Main.RollsPlant.setDayDurationInMs(durationDayMs);
         Main.RollsPlant.setDaysDeadline(deadline);
-
+        Main.RollsPlant.setDayDurationInMs(durationDayMs);
+        Main.RollsPlant.setDiasInicio(deadline);
     }
     
 }

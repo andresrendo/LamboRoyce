@@ -147,7 +147,6 @@ public class Gerente extends Thread {
             // Actualizar contador de días restantes
             plant.daysDeadline--;
             diasTotales++;
-            dashboard.GlobalUI.getMainUI().getMainDashboard().getDeadlineSpinner().setValue(plant.daysDeadline);
             //cambiar sueldo plant.calcsueldos
             if(plant.isLambo){
                 // set dias restantes UI
