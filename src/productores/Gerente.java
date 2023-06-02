@@ -110,6 +110,7 @@ public class Gerente extends Thread {
                             dashboard.GlobalUI.getMainUI().getLGdashboard1().setGerenteAccion("Viendo carreras");
                         }else{
                             //todo rolls
+//                            dashboard.GlobalUI.getMainUI().getRRdashboard1().setGerenteAccion("Viendo carreras");
                         }
                     }
                 } else { // Media hora
@@ -121,6 +122,7 @@ public class Gerente extends Thread {
                             dashboard.GlobalUI.getMainUI().getLGdashboard1().setGerenteAccion("Revisando contabilidad");
                         }else{
                             //todo rolls
+//                            dashboard.GlobalUI.getMainUI().getRRdashboard1().setGerenteAccion("Revisando contabilidad");
                         }
                     }
                 }
@@ -152,6 +154,8 @@ public class Gerente extends Thread {
                 dashboard.GlobalUI.getMainUI().getLGdashboard1().setDiasTotales(diasTotales);   // set dias totales UI
             }else{
                //todo rolls
+//               dashboard.GlobalUI.getMainUI().getRRdashboard1().setDeadlineLabel(plant.daysDeadline);  // set dias restantes UI
+//                dashboard.GlobalUI.getMainUI().getRRdashboard1().setDiasTotales(diasTotales);   // set dias totales UI
             }
 
             }else{

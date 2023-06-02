@@ -141,4 +141,7 @@ public class MainInterface extends javax.swing.JFrame {
     public LGdashboard getLGdashboard1() {
         return lGdashboard1;
     }
+//    public RRdashboard getRRdashboard1(){
+//        return rRdashboard1;
+//    }
 }

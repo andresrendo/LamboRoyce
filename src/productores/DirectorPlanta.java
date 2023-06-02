@@ -105,6 +105,7 @@ public class DirectorPlanta extends Thread {
                                     dashboard.GlobalUI.getMainUI().getLGdashboard1().setDirectorAccion("Supervisando al gerente");
                                 }else{
                                     //todo rolls
+//                                    dashboard.GlobalUI.getMainUI().getRRdashboard1().setDirectorAccion("Supervisando al gerente");
                                 }                                
                                 verificarActividadGerente();
                             }
@@ -136,6 +137,9 @@ public class DirectorPlanta extends Thread {
                 dashboard.GlobalUI.getMainUI().getLGdashboard1().setSueldoDescontado(sal);
             }else{
                 //todo rolls
+//                dashboard.GlobalUI.getMainUI().getRRdashboard1().setFaltasLabel(faltas);
+//                int sal = this.calcSalarioRestado(faltas);
+//                dashboard.GlobalUI.getMainUI().getRRdashboard1().setSueldoDescontado(sal);
             }
 //            Main.gerente.dejarDeVerCarreras(); // El gerente deja de ver carreras
         } else {
@@ -148,6 +152,7 @@ public class DirectorPlanta extends Thread {
             dashboard.GlobalUI.getMainUI().getLGdashboard1().setDirectorAccion("Trabajando");
         }else{
             //todo rolls
+//            dashboard.GlobalUI.getMainUI().getRRdashboard1().setDirectorAccion("Trabajando");
         }
     }
  

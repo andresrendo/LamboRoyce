@@ -87,6 +87,7 @@ public class Almacen {
                         dashboard.GlobalUI.getMainUI().getLGdashboard1().setRuedasQtyLabel(this.wheelsQty);
                     }else{
                         // todo rolls
+//                        dashboard.GlobalUI.getMainUI().getRRdashboard1().setRuedasQtyLabel(this.wheelsQty);
                     }
                     System.out.println("Ruedas producidas: " + this.wheelsQty);
                 }
@@ -104,6 +105,7 @@ public class Almacen {
                         dashboard.GlobalUI.getMainUI().getLGdashboard1().setCarrQtyLabel(this.carroceriaQty);
                     }else{
                         // todo rolls
+//                        dashboard.GlobalUI.getMainUI().getRRdashboard1().setCarrQtyLabel(this.carroceriaQty);
                     }
                     System.out.println("Carrocerias producidas: " + this.carroceriaQty);
                 }
