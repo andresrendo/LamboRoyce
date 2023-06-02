@@ -93,10 +93,11 @@ public class Gerente extends Thread {
 
     @Override
     public void run() {
-        while (plant.daysDeadline > 0) {
-        System.out.println(plant.daysDeadline);
+        while (true) {
+            if(plant.daysDeadline > 0){
+                    System.out.println(plant.daysDeadline);
 
-        for (int i = 0; i < 48; i++) { // 48 intervalos de 30 minutos en un día
+             for (int i = 0; i < 48; i++) { // 48 intervalos de 30 minutos en un día
 
             if (i < 32) { // Las primeras 16 horas del día
                 if (i % 2 == 0) { // Comienzo de una hora
@@ -129,38 +130,44 @@ public class Gerente extends Thread {
                 }else{
                     //todo rolls
                 }
+                
                 if (estaViendoCarreras()) {
 //                    System.out.println("Gerente trabajando en la contabilidad a las " + (i / 2));
-                    dejarDeVerCarreras();
+                    dejarDeVerCarreras();                
                 }
             }
-
-            try {
-                Thread.sleep(plant.dayDurationInMs / 48); // Espera el intervalo de 30 minutos
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+                try {
+                    Thread.sleep(plant.dayDurationInMs / 48); // Espera el intervalo de 30 minutos
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+             }
 
             // Actualizar contador de días restantes
             plant.daysDeadline--;
             diasTotales++;
-            
             if(plant.isLambo){
                 dashboard.GlobalUI.getMainUI().getLGdashboard1().setDeadlineLabel(plant.daysDeadline);  // set dias restantes UI
                 dashboard.GlobalUI.getMainUI().getLGdashboard1().setDiasTotales(diasTotales);   // set dias totales UI
             }else{
                //todo rolls
             }
+
+            }else{
+                try {
+                    Thread.sleep(plant.dayDurationInMs/2);
+                    plant.restartDeadLine();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+            }                    
         }
-    }
-    
-     public void paySueldo(){
+    public void paySueldo(){
         this.sueldoTotal += (getSueldoHora()*24);
     }  
     
     public double getSueldoTotal(){
         return this.sueldoTotal;
-    }
-    
-}
+    }    
+}    

@@ -16,15 +16,13 @@ import java.util.concurrent.Semaphore;
 
 public class DirectorPlanta extends Thread {
     //private int diasRestantes;
-    private int saldo;
     //private Gerente gerente;
     private int faltas;
     private boolean isLambo;
     private VehiclePlant plant;
 
-    public DirectorPlanta(VehiclePlant plant, int saldo, boolean isLambo) {
+    public DirectorPlanta(VehiclePlant plant, boolean isLambo) {
         this.plant = plant;
-        this.saldo = saldo;
         this.faltas = 0;
         this.isLambo = isLambo;
     }
@@ -41,13 +39,13 @@ public class DirectorPlanta extends Thread {
         return saldoFinalGerente;
     }
     
-    private double calcularGananciasCarrosVendidos(int totalCarros, int totalCarrosAcc) {
+    private double calcularGananciasCarrosVendidos(int totalCarros, int totalCarrosAcc, int precioCarro, int precioAcce) {
     // Aquí puedes implementar la lógica para calcular las ganancias de los carros vendidos
     // Puedes utilizar los valores de totalCarros y totalCarrosAcc para calcular las ganancias
     // y devolver el resultado
 
     // Ejemplo de cálculo de ganancias:
-    double ganancias = totalCarros * 1000 + totalCarrosAcc * 1500;
+    double ganancias = totalCarros * precioCarro + totalCarrosAcc * precioAcce;
     return ganancias;
 }
     
@@ -57,26 +55,19 @@ public class DirectorPlanta extends Thread {
         while (true) {
             //System.out.println(Main.gerente.getDaysDeadline());
             if (plant.daysDeadline == 0) {
-                // Calcular ganancias de los carros vendidos
-                System.out.println("Entro en el if");
-//                int totalCarros = Main.almacen.getTotalCarros();
-//                System.out.println(totalCarros);
-//                int totalCarrosAcc = Main.almacen.getTotalCarrosAcc();
-//                double ganancias = calcularGananciasCarrosVendidos(totalCarros, totalCarrosAcc);
-//                System.out.println(ganancias);
-//
-//                // Actualizar saldo con las ganancias
-//                saldo += ganancias;
-                    //System.out.println(Main.LamboPlant.getWorker(1));
                 int sueldosPagados = calcularSalariosMensuales(isLambo);
-                System.out.println(sueldosPagados);
-//                saldo += sueldosPagados;
-                
+                int carrosEnviadosLambo = Main.LamboPlant.almacen.getTotalCarros() + Main.LamboPlant.almacen.getTotalCarrosAcc();
+                int carrosEnviadosRoyce = Main.RollsPlant.almacen.getTotalCarros() + Main.RollsPlant.almacen.getTotalCarrosAcc();
+                double gananciaBrutaLambo = calcularGananciasCarrosVendidos(Main.LamboPlant.almacen.getTotalCarros(), Main.LamboPlant.almacen.getTotalCarrosAcc(), 400000, 750000);
+                double gananciaBrutaRoyce = calcularGananciasCarrosVendidos(Main.RollsPlant.almacen.getTotalCarros(), Main.RollsPlant.almacen.getTotalCarrosAcc(), 450000, 900000);
+                System.out.println("carros lambo enviados" + carrosEnviadosLambo);
+                System.out.println("Ganancia bruta planta Lambo: " + gananciaBrutaLambo + "$");
+                System.out.println("carros Royce enviados" + carrosEnviadosRoyce);
+                System.out.println("Ganancia bruta planta Lambo: " + gananciaBrutaRoyce + "$");
+
                 // Enviar vehículos al concesionario
                 System.out.println("Enviando vehículos al concesionario...");
                 // Simulamos el tiempo que toma enviar los vehículos
-                
-                
                 try {
                     Thread.sleep(plant.dayDurationInMs); // 24 horas
                 } catch (InterruptedException e) {
@@ -114,15 +105,6 @@ public class DirectorPlanta extends Thread {
         }
     }
 
-    private int calcularGananciaEnviada() {
-        // Cálculo de la ganancia enviada
-        return 0;
-    }
-
-    private int reiniciarContador() {
-        // Reiniciar el contador de días restantes
-        return 0;
-    }
 
     public void verificarActividadGerente() throws InterruptedException {
         System.out.println("Director supervisando al gerente");
@@ -152,15 +134,10 @@ public class DirectorPlanta extends Thread {
  
     
     public int calcularSalariosMensuales(boolean isLambo){
-//        System.out.println(Main.LamboPlant.maxWorkers());
-//        int maxWorkersLambo = Main.LamboPlant.maxWorkers();
-//        System.out.println(maxWorkersLambo);
-        int maxWorkersRoyce = Main.RollsPlant.maxWorkers();
-//        System.out.println(maxWorkersRoyce);
+
         int total = 0;
         if(isLambo){
                 for(int i = 0; i< Main.LamboPlant.emplContratados(); i++){
-                    System.out.println(i);
                     total += Main.LamboPlant.getWorker(i).getSueldoTotal();
                     
 //                    System.out.println(total);
@@ -168,9 +145,11 @@ public class DirectorPlanta extends Thread {
                 System.out.println(total);
                 return total;
             }else{
-                for(int i = 0; i<maxWorkersRoyce;i++){
-//                    total += Main.RollsPlant.getWorker(i).getSueldoTotal();
+                for(int i = 0; i<Main.RollsPlant.emplContratados();i++){
+                    total += Main.RollsPlant.getWorker(i).getSueldoTotal();
+                    
                     }
+//                System.out.println("la otra planta" + total);
             return total;
             }
         }

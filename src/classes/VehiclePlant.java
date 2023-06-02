@@ -30,6 +30,7 @@ public class VehiclePlant {
     public int cantidadWorkers;
     public Gerente gerente;
     public DirectorPlanta director;
+    public int diasInicio;
 
     
     public VehiclePlant (String name, int maxWorkerQty, int dayDurationMs, int deadline, boolean isLambo) {
@@ -41,8 +42,9 @@ public class VehiclePlant {
         this.isLambo = isLambo;
         this.daysDeadline = deadline;
         this.dayDurationInMs = dayDurationMs;
-        this.director = new DirectorPlanta(this,0,isLambo);
+        this.director = new DirectorPlanta(this,isLambo);
         this.gerente = new Gerente(this,dayDurationMs);
+        this.diasInicio = deadline;
         
         actualizarEmplPorDepto();        
         crearWorkers();
@@ -53,6 +55,7 @@ public class VehiclePlant {
         this.gerente.start();
         this.director.start();
     }
+    
     
     public void actualizarEmplPorDepto(){
         String parametrosEmpl;
@@ -138,6 +141,10 @@ public class VehiclePlant {
     }
     public int emplContratados(){
         return cantidadWorkers;
+    }
+    
+    public int restartDeadLine(){
+        return this.daysDeadline = diasInicio;
     }
 
 }
