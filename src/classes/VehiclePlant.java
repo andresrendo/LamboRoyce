@@ -82,6 +82,10 @@ public class VehiclePlant extends Thread{
                     dashboard.GlobalUI.getMainUI().getRrDashboard1().getDashboardInfo().setUtilidadTotal(utilidad);
                 }
                 
+                //setear daysdeadline y duration en UI
+                dashboard.GlobalUI.getMainUI().getMainDashboard().setDeadlineSpinner(this.daysDeadline);
+                dashboard.GlobalUI.getMainUI().getMainDashboard().setDayDurationSpinner((int) (this.dayDurationInMs/1000));
+                
                 
                 Thread.sleep(this.dayDurationInMs);
             } catch (InterruptedException ex){
@@ -189,6 +193,10 @@ public class VehiclePlant extends Thread{
     
     public void setDayDurationInMs(int dayDuration){
         this.dayDurationInMs = dayDuration;
+    }
+    
+    public void setDaysDeadline(int day){
+        this.daysDeadline = day;
     }
                     
     public int maxWorkers(){

@@ -63,12 +63,12 @@ public class Functions {
             JOptionPane.showMessageDialog(null, "No se pudo guardar la información");
         }
         
-//        JOptionPane.showMessageDialog(null, "Guardado Éxitoso!");
-//        FunctionsUI.updateDaytoLaunchAndDayTime(daysToLaunch, durationDayinSec);
         Main.LamboPlant.setDayDurationInMs(durationDayMs);
-//        Main.RollsPlant.setDayDurationInMs(durationDayMs);
-//        Main.rm.getPm().setDaysToPublish(daysToLaunch);
-//        Main.rm.getDirector().setOriginalLaunchDays(daysToLaunch);
+        Main.LamboPlant.setDaysDeadline(deadline);
+        
+        Main.RollsPlant.setDayDurationInMs(durationDayMs);
+        Main.RollsPlant.setDaysDeadline(deadline);
+
     }
     
 }

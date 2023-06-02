@@ -1,6 +1,6 @@
 motor=1
-chasis=1
+chasis=4
 accesorios=1
-carroceria=1
+carroceria=3
 ruedas=1
 ensamblador=1

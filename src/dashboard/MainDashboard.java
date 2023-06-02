@@ -62,6 +62,11 @@ public class MainDashboard extends javax.swing.JPanel {
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
 
         deadlineSpinner.setModel(new javax.swing.SpinnerNumberModel(7, 7, null, 1));
+        deadlineSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                deadlineSpinnerStateChanged(evt);
+            }
+        });
         add(deadlineSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 70, 30));
 
         dayDurationSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
@@ -69,6 +74,16 @@ public class MainDashboard extends javax.swing.JPanel {
         add(dashboardInfoLg, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 350, 220));
         add(dashboardInfoRr, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 360, 220));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deadlineSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_deadlineSpinnerStateChanged
+        // TODO add your handling code here:
+        int valorDeadline = Integer.parseInt(this.deadlineSpinner.getValue().toString());
+        int valorDurationMs = Integer.parseInt(this.dayDurationSpinner.getValue().toString()) * 1000;
+        
+        if (valorDeadline >= 7){
+            Functions.saveDatosIniciales(valorDurationMs, valorDeadline);
+        }
+    }//GEN-LAST:event_deadlineSpinnerStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -94,6 +109,12 @@ public class MainDashboard extends javax.swing.JPanel {
     }
     public JSpinner getDayDurationSpinner() {
         return this.dayDurationSpinner;
+    }
+    public void setDeadlineSpinner(int num){
+        this.deadlineSpinner.setValue(num);
+    }
+    public void setDayDurationSpinner(int num){
+        this.dayDurationSpinner.setValue(num);
     }
     
 }
